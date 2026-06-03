@@ -17,6 +17,8 @@ once, then proceed (don't rehash).
 - **No trailers:** never add `Co-Authored-By:`, and never add a `🤖 Generated with Claude Code` footer to commits or PR bodies.
 - Pick the Conventional Commit type honestly: `feat`/`fix` cut releases; `chore`/`docs`/`refactor`/`test` don't. Scaffolding is `chore`, not `feat`.
 - In release-please + auto-merge repos the amend window is ~seconds. Get the one-line message right the first time.
+- **Bots are exempt:** dependabot / release-please author their own commits with structured multi-line bodies (machine-readable footers, changelogs). That's expected — the one-line rule governs commits I write, not bot commits.
+- **Integrate PRs by rebase** (squash only for a messy WIP branch) — **never a merge commit**. `main` stays strictly linear; release-please keeps its release PR rebased on `main` automatically.
 
 ## Tests
 
