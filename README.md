@@ -11,9 +11,13 @@ maximalist catalog; every skill earns its place.
 ## Requires
 
 - **[`superpowers`](https://github.com/obra/superpowers)** — these skills invoke it
-  by name (brainstorming, writing-plans, subagent-driven-development, TDD,
+  by name (brainstorming, writing-plans, subagent-driven-development, systematic-debugging,
   verification-before-completion, finishing-a-development-branch). It is the **only**
-  runtime dependency. Nothing else is installed.
+  required runtime dependency. Nothing else is installed.
+
+> Optional: `ux-bar` and `security-bar` layer on the `frontend-design` and
+> `security-review` skills respectively, and `task-flow`'s SPIKE step can use
+> `deep-research` / `feature-dev` — each is used only if present, none are required.
 
 ## Install
 
