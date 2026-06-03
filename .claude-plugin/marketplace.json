@@ -2,12 +2,14 @@
   "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
   "name": "endika",
   "description": "Endika's personal Claude Code plugins — stable channel.",
-  "owner": { "name": "Endika" },
+  "owner": {
+    "name": "Endika"
+  },
   "plugins": [
     {
       "name": "eskills",
       "source": "./",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "description": "Lean personal skills: conventions, task flow, and quality lenses. Requires the superpowers plugin.",
       "category": "development",
       "homepage": "https://github.com/Endika/eskills"
