@@ -20,6 +20,15 @@ lens — the hard cap; a new lens must displace one.)
 - **Payload size, not just row count.** What crosses the wire per operation? Big blobs,
   over-fetching, sending a whole row when a version number would do.
 
+## Per-stack hot-spots
+
+Same lens, applied to the stack in play — the footgun I hit most in each:
+
+- **React / Vite:** wasted re-renders → memoize (`memo`/`useMemo`/`useCallback`), stable list keys, split context; virtualize long lists. Profile with the React DevTools profiler, don't guess.
+- **Django:** ORM **N+1** → `select_related` (FK) / `prefetch_related` (M2M); fetch only needed columns (`.only()`/`.values()`); never run a query inside a template or loop.
+- **Flask / FastAPI:** **blocking I/O on an async path** — a sync DB/HTTP call inside `async def` stalls the event loop → use an async client or offload to a threadpool; keep CPU-bound work off the loop.
+- **Kotlin coroutines:** blocking work on the wrong dispatcher → `Dispatchers.IO` for blocking calls, wrap with `withContext`; no `runBlocking` on hot paths; don't re-collect cold `Flow`s needlessly.
+
 ## Supabase egress — my binding limit
 
 The Free-tier wall is **egress (bytes transmitted), not DB size**. Egress ≈
