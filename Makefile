@@ -40,7 +40,7 @@ check: ## Validate frontmatter, JSON, and design caps (run before pushing)
 	  fm=$$(awk 'NR==1&&/^---/{f=1;next} /^---/{if(f)exit} f{print}' "$$f" | wc -c)
 	  [ "$$fm" -le 1024 ] || { echo "✗ frontmatter >1024 chars: $$dir ($$fm)"; fail=1; }
 	done
-	[ "$$skills" -le 10 ] || { echo "✗ >10 skills ($$skills) — design cap"; fail=1; }
+	[ "$$skills" -le 11 ] || { echo "✗ >11 skills ($$skills) — cap (raised 10→11 for context-budget)"; fail=1; }
 	[ "$$bars" -le 4 ]   || { echo "✗ >4 quality lenses ($$bars) — hard cap"; fail=1; }
 	if [ "$$fail" = 0 ]; then echo "✓ check passed ($$skills skills, $$bars lenses)"; else exit 1; fi
 
