@@ -1,0 +1,6 @@
+# release-please owns these — it rewrites them in its own format on every release,
+# so they must not be gated by the prettier format check.
+CHANGELOG.md
+.claude-plugin/plugin.json
+.claude-plugin/marketplace.json
+.release-please-manifest.json
