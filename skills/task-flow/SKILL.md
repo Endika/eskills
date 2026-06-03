@@ -45,6 +45,11 @@ Each task in the plan carries:
 
 I review the plan + acceptance criteria and approve. Nothing in Phase 2 starts until I do.
 
+**Compact here.** This gate is the prime context boundary: once the plan is approved,
+`/compact` to drop the exploration/brainstorming context and carry only the plan into
+Phase 2. Do the same after each milestone or before an unrelated task — strategic
+compaction at logical boundaries beats arbitrary auto-compaction mid-task.
+
 ## Phase 2 — build (auto), per task via `superpowers:subagent-driven-development`
 
 For each task, in order:
