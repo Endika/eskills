@@ -1,10 +1,18 @@
 {
   "name": "eskills",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Endika's lean personal skills pack — conventions, task flow, and quality lenses. Requires the superpowers plugin.",
-  "author": { "name": "Endika" },
+  "author": {
+    "name": "Endika"
+  },
   "homepage": "https://github.com/Endika/eskills",
   "repository": "https://github.com/Endika/eskills",
   "license": "MIT",
-  "keywords": ["skills", "conventions", "workflow", "quality", "personal"]
+  "keywords": [
+    "skills",
+    "conventions",
+    "workflow",
+    "quality",
+    "personal"
+  ]
 }
