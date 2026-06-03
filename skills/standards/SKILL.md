@@ -20,8 +20,8 @@ once, then proceed (don't rehash).
 
 ## Tests
 
-Fewer, higher-signal tests over a high count. Before writing one, ask: *"If I delete
-this, what real bug could ship undetected?"* If the answer is "none / TypeScript
+Fewer, higher-signal tests over a high count. Before writing one, ask: _"If I delete
+this, what real bug could ship undetected?"_ If the answer is "none / TypeScript
 catches it", don't write it.
 
 - **No mock-only tests.** Don't `vi.fn()`/spy a port and assert it was called — that tests wiring, not behavior. Build a small in-memory fake of the port and assert the observable outcome.

@@ -14,8 +14,8 @@ really means → fix** — not a tutorial. Match the symptom, apply the recipe.
 
 - **Symptom:** release-please fails at "Creating N releases…" despite correct token perms.
 - **Means:** GitHub **secondary** rate-limit (abuse detection) on the `github-actions[bot]`
-  token, *not* a permissions bug. Tell-tale: a release succeeded seconds earlier; `gh api
-  rate_limit` core looks healthy. Usually triggered by a burst (dependabot opening ~12 PRs).
+  token, _not_ a permissions bug. Tell-tale: a release succeeded seconds earlier; `gh api
+rate_limit` core looks healthy. Usually triggered by a burst (dependabot opening ~12 PRs).
 - **Fix:** (1) create the missing release with **your user token**, full 40-char SHA:
   `gh release create vX.Y.Z --target <full-sha> --title vX.Y.Z --notes "<CHANGELOG section>" --latest`.
   (2) Swap the PR label `autorelease: pending` → `autorelease: tagged` via REST (`gh api`),

@@ -38,18 +38,23 @@ typed it. The output is one archivable markdown file.
 - **Severity:** low | medium | high
 - **Impact:** who/what was affected, for how long
 
-## What happened
+## Incident
+
 <one paragraph: the observable failure>
 
 ## Timeline (only if order mattered)
+
 - HH:MM — …
 
 ## Root cause
+
 <the underlying cause found via systematic-debugging — the "why", not the symptom>
 
 ## Fix
+
 <what changed; commit / PR reference>
 
 ## Prevention
+
 <the specific thing that stops this class of bug recurring>
 ```

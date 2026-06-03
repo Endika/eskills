@@ -43,32 +43,32 @@ Invoked as `eskills:<name>`.
 
 ### Core
 
-| Skill | Use when |
-| --- | --- |
-| `standards` | About to commit, write/design tests, choose an ID type, or push — enforces my conventions floor. |
-| `task-flow` | Implementing a feature end-to-end — orchestrates spec → plan → per-task implement/verify/review over superpowers, with a single human gate. |
-| `spec-intake` | Turning a task (Jira/Linear/URL/free text) into a normalized spec before planning. |
-| `gen-uml` | Generating a Mermaid diagram (architecture/flow/sequence) from existing code. |
-| `postmortem` | After an important bug/failure — capture, root cause, fix, lesson as an archivable doc. |
-| `stack-gotchas` | Hitting a known failure in my stack — release-please, GitHub Pages, Supabase — for a direct diagnose-and-recover recipe. |
+| Skill           | Use when                                                                                                                                    |
+| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
+| `standards`     | About to commit, write/design tests, choose an ID type, or push — enforces my conventions floor.                                            |
+| `task-flow`     | Implementing a feature end-to-end — orchestrates spec → plan → per-task implement/verify/review over superpowers, with a single human gate. |
+| `spec-intake`   | Turning a task (Jira/Linear/URL/free text) into a normalized spec before planning.                                                          |
+| `gen-uml`       | Generating a Mermaid diagram (architecture/flow/sequence) from existing code.                                                               |
+| `postmortem`    | After an important bug/failure — capture, root cause, fix, lesson as an archivable doc.                                                     |
+| `stack-gotchas` | Hitting a known failure in my stack — release-please, GitHub Pages, Supabase — for a direct diagnose-and-recover recipe.                    |
 
 ### Quality lenses
 
 Short rubrics in my voice — usable standalone on a diff, and invoked by `task-flow`'s
 review stage. Hard cap of **4**.
 
-| Lens | Use when |
-| --- | --- |
-| `ux-bar` | Building/reviewing UI — my design-system and semantic-color rules on top of `frontend-design`. |
-| `security-bar` | Reviewing for security — my checklist on top of `security-review`. |
-| `arch-bar` | Judging whether an architecture fits its scale — catches over- and under-engineering. |
-| `perf-bar` | Assessing performance/algorithmic soundness — Big-O, N+1, egress, benchmarks. |
+| Lens           | Use when                                                                                       |
+| -------------- | ---------------------------------------------------------------------------------------------- |
+| `ux-bar`       | Building/reviewing UI — my design-system and semantic-color rules on top of `frontend-design`. |
+| `security-bar` | Reviewing for security — my checklist on top of `security-review`.                             |
+| `arch-bar`     | Judging whether an architecture fits its scale — catches over- and under-engineering.          |
+| `perf-bar`     | Assessing performance/algorithmic soundness — Big-O, N+1, egress, benchmarks.                  |
 
 ## How it relates to upstream
 
 One rule shapes the whole repo:
 
-> **Copy/adapt** small, stable ideas where I want *my* version.
+> **Copy/adapt** small, stable ideas where I want _my_ version.
 > **Reference** large, living engines where I want to ride their updates.
 
 So `superpowers` is referenced (invoked by name); a few small patterns are adapted and

@@ -26,7 +26,7 @@ one is standalone — it delegates to no upstream engine; the rubric below is th
   causes quadratic growth and blows a real limit (see the egress scar in
   `eskills:perf-bar`).
 - No boundary where one is clearly needed — domain logic fused into the UI or the DB row.
-- Missing seam for the change that is *already* on the roadmap.
+- Missing seam for the change that is _already_ on the roadmap.
 - → Add exactly the one boundary that removes the wall; not a framework.
 
 ## How to judge
@@ -35,7 +35,7 @@ one is standalone — it delegates to no upstream engine; the rubric below is th
    hypothetical.
 2. For each piece of structure, ask: what breaks if I remove it? If "nothing soon", it's
    over-built. If "a known limit, soon", it's under-built.
-3. Name the *one* change that most improves fit. Prefer reversible, minimal moves (a
+3. Name the _one_ change that most improves fit. Prefer reversible, minimal moves (a
    boundary, a cap, a split) over rewrites.
 
 ## Output

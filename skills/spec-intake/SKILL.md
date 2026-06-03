@@ -24,19 +24,24 @@ entry point of `eskills:task-flow` Phase 1.
 
 ```markdown
 ## Objective
+
 <one or two sentences: the outcome, in the user's terms>
 
 ## Acceptance criteria
+
 - [ ] <observable, checkable condition>
 - [ ] …
 
 ## Constraints
+
 - <tech, data, deadline, compatibility, non-goals>
 
 ## Definition of done
+
 - <tests, docs, review, deploy — what "finished" requires>
 
 ## Classification
+
 - Project shape: greenfield | brownfield
 - Hard-tech challenge: yes (algorithm / performance) | no
 ```

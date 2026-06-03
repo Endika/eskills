@@ -34,7 +34,7 @@ of `eskills:task-flow`.
 - Check contrast: small text needs **AA 4.5:1**. Flag anything below it.
 - A conscious exception is allowed only if named explicitly (e.g. coral fill + white text
   sits at ~3:1 — kept on purpose, with the darker `#E8472F` fallback documented). An
-  *unflagged* sub-AA choice is a finding.
+  _unflagged_ sub-AA choice is a finding.
 
 ## UX checks
 

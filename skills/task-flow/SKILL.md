@@ -35,6 +35,7 @@ keystone is an adversarial verifier that re-earns "done" in fresh context.
 ### Plan template (integrated — not a separate skill)
 
 Each task in the plan carries:
+
 - exact files to create/modify;
 - the change, concretely (no "add error handling" placeholders);
 - **acceptance criteria** — observable and checkable;

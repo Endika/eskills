@@ -24,6 +24,7 @@ verify it reflects what the code actually does, not what it was supposed to do.
 ## Types & examples
 
 **Architecture** (modules/dependencies):
+
 ```mermaid
 graph TD
   UI[UI] --> UC[Use cases]
@@ -33,6 +34,7 @@ graph TD
 ```
 
 **Flow** (a process / decision path):
+
 ```mermaid
 flowchart TD
   A[Receive task] --> B{Brownfield?}
@@ -42,6 +44,7 @@ flowchart TD
 ```
 
 **Sequence** (interaction over time):
+
 ```mermaid
 sequenceDiagram
   participant C as Client
