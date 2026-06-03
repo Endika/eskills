@@ -1,0 +1,20 @@
+name: release-please
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  release-please:
+    runs-on: ubuntu-latest
+    steps:
+      # Reads release-please-config.json + .release-please-manifest.json.
+      # Deliberately NO auto-merge and NO self-redispatch: the release PR is
+      # merged by hand to avoid the bot-PR-never-gets-CI infinite loop.
+      - uses: googleapis/release-please-action@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
