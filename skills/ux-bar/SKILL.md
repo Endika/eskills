@@ -29,12 +29,16 @@ of `eskills:task-flow`.
   for free.
 - Ship light **and** dark; verify both. Respect `system` as the default preference.
 
-## Accessibility floor
+## Accessibility floor (WCAG 2.2 AA)
 
-- Check contrast: small text needs **AA 4.5:1**. Flag anything below it.
-- A conscious exception is allowed only if named explicitly (e.g. coral fill + white text
-  sits at ~3:1 — kept on purpose, with the darker `#E8472F` fallback documented). An
-  _unflagged_ sub-AA choice is a finding.
+POUR: Perceivable, Operable, Understandable, Robust. The checks that catch most barriers:
+
+- **Contrast:** small text **4.5:1**, large text / UI components **3:1**. A sub-AA choice is a finding unless named on purpose (e.g. coral fill + white text sits at ~3:1 — kept, with the darker `#E8472F` fallback documented).
+- **Semantics first:** use the real element (`button`, `a`, `nav`, `label`) before a `div` + ARIA. Correct Name / Role / Value; text alternatives for icons and images.
+- **Keyboard:** every interactive element reachable and operable by keyboard, with a **visible focus indicator** (SC 2.4.11). No keyboard traps; logical focus order.
+- **Target size:** interactive targets **≥ 24×24 CSS px** (SC 2.5.8).
+- **Dynamic state:** announce async changes via `aria-live`/live regions; descriptive errors with how to fix (SC 3.3.3).
+- **Reflow:** usable up to 400% zoom without loss of content or function.
 
 ## UX checks
 
