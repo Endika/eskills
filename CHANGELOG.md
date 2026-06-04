@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.0](https://github.com/Endika/eskills/compare/v0.4.0...v0.5.0) (2026-06-04)
+
+
+### Features
+
+* **hooks:** ship SessionStart hook enforcing eskills precedence ([cf72252](https://github.com/Endika/eskills/commit/cf722527b33cfd5f63fe60da26f936580a50f947))
+
 ## [0.4.0](https://github.com/Endika/eskills/compare/v0.3.0...v0.4.0) (2026-06-04)
 
 
