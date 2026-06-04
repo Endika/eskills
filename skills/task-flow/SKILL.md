@@ -1,6 +1,6 @@
 ---
 name: task-flow
-description: Use when implementing a feature or multi-step task end-to-end — orchestrates spec intake, adaptive analysis, planning, and a per-task implement/verify/review loop over superpowers, with a single human gate after the plan.
+description: Use when implementing a feature or multi-step task end-to-end — orchestrates spec intake, adaptive analysis, planning, and a per-task implement/verify/review loop over superpowers, with a single human gate after the plan; includes a human-pulled respec gate to correct the spec mid-build.
 ---
 
 # task-flow
@@ -71,6 +71,30 @@ Model selection: cheap model for mechanical tasks, capable model for review/judg
 Test discipline comes from `eskills:standards` (integration tests, in-memory fakes, no
 mocks) — intentionally, not from `superpowers:test-driven-development`; my test philosophy
 differs.
+
+## Phase 2 — respec gate (human-pulled)
+
+A human-pulled escape hatch, available throughout Phase 2. Not a sequential step — an
+interrupt I fire when, watching the changes go by, I realize the **spec itself missed
+something** (a component that should be reused instead of rebuilt, scope to drop, a plan
+assumption that's false). There is no automatic trigger: only I pull this cord.
+
+When pulled (I say something like "stop, the spec is wrong about…"):
+
+1. **Pause** the per-task loop — do not start the next task.
+2. **Capture the correction conversationally** — I state in natural language what was
+   missed: drop scope ("don't build/use this"), redirect ("reuse object/component Y"), or
+   fix a plan assumption.
+3. **Single gate, two decisions** — show me what is already built, then ask:
+   - **Altura:** edit spec and continue · re-plan affected tasks · re-plan everything.
+   - **Fate of built work:** discard (git reset / abandon) · keep and adapt.
+4. **Re-spec** via `eskills:spec-intake` — update **only** the requirements I asked to
+   change. No trail; the "why" lives in the conversation, not the document.
+5. **Re-plan** the affected tasks via `superpowers:writing-plans` from the corrected spec.
+6. **Re-launch** Phase 2 over the affected tasks. The adversarial verifier is unchanged.
+
+**Compact after a discard.** A re-spec that discards work is a context boundary like the
+plan gate — `/compact` to drop the abandoned-work context before re-launching.
 
 ## Phase 3 — finish (auto)
 
