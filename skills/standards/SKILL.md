@@ -42,7 +42,9 @@ catches it", don't write it.
 ## Repo hygiene
 
 - **Never `git add -A` / `git add .` / `git add --all`.** Inspect `git status --short` and stage explicit paths.
-- Repo holds **only project code + README** (+ LICENSE/config). Internal docs, specs, plans and checklists live **outside the repo** in a sibling `../<repo>-docs/` dir — never committed, and **never `.gitignore`'d either** (gitignoring a doc is itself the violation; just don't stage it).
+- Repo holds **only project code + README** (+ LICENSE/config). Internal docs, specs, plans and checklists live **outside the repo** in a sibling `../<repo>-notes/` dir — never committed, and **never `.gitignore`'d either** (gitignoring a doc is itself the violation; just don't stage it).
+- **Skill defaults are wrong here — override them.** `brainstorming`, `writing-plans` and `task-flow` default to saving specs/plans at `docs/superpowers/...` *inside* the repo and then committing them. Do NOT follow that. When bootstrapping a project, create `../<repo>-notes/` as a sibling of the repo **before the first spec/plan write**, and target it from that very first Write. The first time a spec lands in `docs/` inside the repo, the rule is already broken.
+- If an internal doc reaches the repo anyway: `git rm` it (or rewrite history with the user's OK if already pushed) and move it to `../<repo>-notes/`. Never "fix" it by adding the path to `.gitignore`.
 - Code, identifiers, log strings, file/var names, UI strings → **English**. Comments minimal — only the non-obvious "why".
 
 ## IDs
