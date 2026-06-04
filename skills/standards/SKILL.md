@@ -20,6 +20,13 @@ once, then proceed (don't rehash).
 - **Bots are exempt:** dependabot / release-please author their own commits with structured multi-line bodies (machine-readable footers, changelogs). That's expected — the one-line rule governs commits I write, not bot commits.
 - **Integrate PRs by rebase** (squash only for a messy WIP branch) — **never a merge commit**. `main` stays strictly linear; release-please keeps its release PR rebased on `main` automatically.
 
+## Pull Requests
+
+- **Title:** same `type(scope): subject` as a commit — English, imperative, one line.
+- **Body — clear and simple to read.** Lead with one or two sentences of _what changed and why_, then a short bullet list of the notable changes. Add a section (testing, risks, screenshots) only when it earns its place — no fixed template, no filler headings.
+- **No trailers, no footer:** never a `🤖 Generated with Claude Code` footer and never `Co-Authored-By:` — same rule as commits.
+- Link the issue with `Closes #N` when there is one.
+
 ## Tests
 
 Fewer, higher-signal tests over a high count. Before writing one, ask: _"If I delete
