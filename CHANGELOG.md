@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.4.0](https://github.com/Endika/eskills/compare/v0.3.0...v0.4.0) (2026-06-04)
+
+
+### Features
+
+* **standards:** add pull request conventions ([b021ae1](https://github.com/Endika/eskills/commit/b021ae191ccf8ab569dd8c695e01cbba1f580721))
+* **task-flow:** add human-pulled respec gate to phase 2 ([9b01dab](https://github.com/Endika/eskills/commit/9b01dab2c8cc4f3d470d75083c60e2c960a4b4da))
+
 ## [0.3.0](https://github.com/Endika/eskills/compare/v0.2.0...v0.3.0) (2026-06-03)
 
 
