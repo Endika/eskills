@@ -26,7 +26,7 @@ typed it. The output is one archivable markdown file.
 3. **Make prevention concrete.** "Be more careful" is not prevention. Name the specific
    thing that would have caught or blocked it: a test, a guard/validation, a CI gate, a
    `CLAUDE.md` note, or a durable memory.
-4. **Save it outside the repo:** `../<repo>-docs/postmortems/YYYY-MM-DD-<slug>.md`.
+4. **Save it outside the repo:** `../<repo>-notes/postmortems/YYYY-MM-DD-<slug>.md`.
    Internal docs are never committed (see `standards`) — archive it, don't ship it.
 
 ## Template
