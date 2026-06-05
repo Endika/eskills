@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.6.0](https://github.com/Endika/eskills/compare/v0.5.0...v0.6.0) (2026-06-05)
+
+
+### Features
+
+* **security-bar:** add agent-harness security checklist ([2e18311](https://github.com/Endika/eskills/commit/2e18311a0bc767eb5371aebc4bc71fa238837e41))
+
 ## [0.5.0](https://github.com/Endika/eskills/compare/v0.4.0...v0.5.0) (2026-06-04)
 
 
