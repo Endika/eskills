@@ -11,6 +11,10 @@ My security checklist. It layers on top of `security-review` (reference it for t
 sweep) and adds the things that actually bite me. Usable standalone on a diff, and invoked
 by the quality stage of `eskills:task-flow`.
 
+This is the **defensive** lens ("is this built right?"). For an **offensive** pass — hunting
+reachable, exploitable paths to a sink — use `eskills:exploit-hunt`; it's the counterpart,
+not a per-task default.
+
 ## The principle I keep relearning
 
 **Client-side guards are not security.** The anon key ships in the client; a PIN, a
