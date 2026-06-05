@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.7.1](https://github.com/Endika/eskills/compare/v0.7.0...v0.7.1) (2026-06-05)
+
+
+### Bug Fixes
+
+* **check:** raise skill cap 11-&gt;12 for exploit-hunt ([ca0e03a](https://github.com/Endika/eskills/commit/ca0e03a91ee3d342ff6263bf9a63c472972dd459))
+* **postmortem:** align archive dir to ../&lt;repo&gt;-notes ([90a8a04](https://github.com/Endika/eskills/commit/90a8a04f752064f71c1308eeefb7d36e79bb0447))
+
 ## [0.7.0](https://github.com/Endika/eskills/compare/v0.6.0...v0.7.0) (2026-06-05)
 
 
