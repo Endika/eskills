@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.7.0](https://github.com/Endika/eskills/compare/v0.6.0...v0.7.0) (2026-06-05)
+
+
+### Features
+
+* **exploit-hunt:** add offensive vulnerability-hunting skill ([45b1d64](https://github.com/Endika/eskills/commit/45b1d640bca0ce4fbfdb6b6b77eb6f944cbe8148))
+
 ## [0.6.0](https://github.com/Endika/eskills/compare/v0.5.0...v0.6.0) (2026-06-05)
 
 
