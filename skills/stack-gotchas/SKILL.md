@@ -50,11 +50,11 @@ rate_limit` core looks healthy. Usually triggered by a burst (dependabot opening
 
 ## Verify mobile/responsive rendering in WSL (no sudo)
 
-- **Symptom:** you need to *see/measure* real mobile widths but there's no Linux browser;
+- **Symptom:** you need to _see/measure_ real mobile widths but there's no Linux browser;
   Windows Edge headless **clamps window width to ~500px** (screenshots <450px render a wider
   layout cropped — misleading), and puppeteer can't drive the Windows `.exe` from WSL (stdio
   pipe breaks; its CDP debug port is unreachable over NAT).
-- **Means:** you need a *native Linux* Chromium, but the one puppeteer downloads is missing
+- **Means:** you need a _native Linux_ Chromium, but the one puppeteer downloads is missing
   `libnss3`/`libnspr4`/`libasound2` and there's no passwordless sudo.
 - **Fix (all without root):**
   ```
