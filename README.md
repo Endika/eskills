@@ -52,6 +52,7 @@ Invoked as `eskills:<name>`.
 | `postmortem`     | After an important bug/failure — capture, root cause, fix, lesson as an archivable doc.                                                                                                                   |
 | `stack-gotchas`  | Hitting a known failure in my stack — release-please, GitHub Pages, Supabase — for a direct diagnose-and-recover recipe.                                                                                  |
 | `context-budget` | Context feels heavy / added skills, MCP, or memory — audits whole-setup token consumption with a prioritized trim list.                                                                                   |
+| `exploit-hunt`   | Hunting actually-exploitable vulnerabilities (SSRF, SQLi, command injection, RCE, path traversal, XSS) — offensive counterpart to `security-bar`, on-demand, not a per-task lens.                          |
 
 ### Quality lenses
 

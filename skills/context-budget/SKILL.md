@@ -10,7 +10,8 @@ description: Use when context feels heavy or you've added skills, agents, MCP se
 Audit what's eating my Claude Code context — skills, MCP servers, the CLAUDE.md chain, and
 my growing memory — and produce a prioritized list of what to trim. The point is keeping
 the **whole setup** lean, not just the pack. This is skill #11, a conscious break of the
-10-cap, justified by token economy being a recurring concern.
+original 10-cap (since raised again, 11→12, for `exploit-hunt`), justified by token economy
+being a recurring concern.
 
 ## When to use
 
