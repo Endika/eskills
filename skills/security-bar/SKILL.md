@@ -1,6 +1,6 @@
 ---
 name: security-bar
-description: Use when reviewing changes for security to apply my checklist on top of security-review — input handling, secrets, authz, Supabase RLS, egress limits, and server-side PIN enforcement.
+description: Use when reviewing changes for security to apply my checklist on top of security-review — input handling, secrets, authz, Supabase RLS, egress limits, server-side PIN enforcement, and the agent-harness surface (config secrets, hook injection, MCP risk, over-broad permissions).
 ---
 
 # security-bar
@@ -32,6 +32,25 @@ protection. If it must be enforced, it is enforced on the server.
   lock. Enforce it in an RPC with RLS restricting the direct write.
 - **Egress / abuse limits** — see `eskills:perf-bar`; a missing cap is both a cost and an
   abuse vector.
+
+## Harness / agent-config
+
+Different target from the app checklist above: this audits **my own agent setup**, not the
+code under review. The principle: **agent config is executable trust** — a hook or an MCP
+server runs with my privileges, so it is code I am running, not configuration I am declaring.
+
+- **Config secrets** — no real keys in `.claude/settings*.json`, hook scripts, or MCP
+  configs that land in a repo (`sk-`, `ghp_`, `AKIA`, …). Only public-by-design keys belong
+  client-side; everything else stays in the environment, never committed.
+- **Hook injection** — every hook command is auditable and trusted; it fires on tool/session
+  events with full shell privileges. Flag any hook that interpolates untrusted input (tool
+  output, file contents, a PR title) into a shell command — that is an injection sink.
+- **MCP server risk** — review each server before connecting; it sees my prompts and tool
+  calls and can exfiltrate. Prefer pinned, known sources; treat a third-party server as code
+  I am running, not a passive endpoint.
+- **Permissions** — `allow` lists scoped to what's actually needed; no blanket wildcards
+  (e.g. `Bash(*)`) that defeat the prompt gate. Remember a permission moved to user/global
+  settings applies to every project, not just this one.
 
 ## Output
 
