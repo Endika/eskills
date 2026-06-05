@@ -1,6 +1,6 @@
 ---
 name: ux-bar
-description: Use when building or reviewing UI to apply my design and UX bar on top of frontend-design — semantic color and design-system rules (coral is brand; positive=owed, warn=owes, danger=error/delete).
+description: Use when building or reviewing UI to apply my design and UX bar on top of frontend-design — semantic color, design-system rules (coral is brand; positive=owed, warn=owes, danger=error/delete), and responsive / horizontal-overflow checks.
 ---
 
 # ux-bar
@@ -39,6 +39,33 @@ POUR: Perceivable, Operable, Understandable, Robust. The checks that catch most 
 - **Target size:** interactive targets **≥ 24×24 CSS px** (SC 2.5.8).
 - **Dynamic state:** announce async changes via `aria-live`/live regions; descriptive errors with how to fix (SC 3.3.3).
 - **Reflow:** usable up to 400% zoom without loss of content or function.
+
+## Responsive & horizontal overflow
+
+The responsive bug I hit most. Symptom → cause → fix:
+
+- **Grid/flex items don't shrink → the page overflows.** A grid/flex item defaults to
+  `min-width: auto`, so it refuses to go below its content's intrinsic min-size and drags the
+  whole track wider than the viewport. Fix: `min-width: 0` **on the item** (the grid/flex
+  child) — not on the inner element.
+- **Native controls keep an intrinsic width.** `<select>`/`<input>` carry a min width
+  (~longest option / ~20ch) that ignores `min-width:0` on the control itself. Put
+  `min-width:0` on its grid/flex **container**; `width:0` on the control alone does nothing.
+- **Intrinsic grids beat breakpoints:** `repeat(auto-fit, minmax(min(BASIS, 100%), 1fr))`.
+  The `min(BASIS,100%)` is essential — it stops the column floor (`BASIS`) from overflowing
+  below that width. Wraps N→1 with no magic media query.
+- **`overflow-x: clip` is a mask, not a fix.** It hides the overflow (and preserves
+  `position:sticky`, unlike `hidden`), but the element is still too wide. Find and shrink the
+  real culprit; keep clip only as defense-in-depth.
+- **A header narrower than the content = overflow elsewhere.** On mobile, horizontal overflow
+  expands the layout viewport, so a `max-width`/centered header stops lining up with
+  full-width cards. Don't fix the header — find what overflows.
+
+**Measure, don't eyeball.** For any "not responsive" report: render at real widths and check
+`documentElement.scrollWidth > clientWidth`. Bisect the culprit by hiding each child
+(`display:none`) and re-measuring; confirm the fix by injecting the candidate style and
+re-measuring **before** editing. Verify down to **320px** (real floor; Galaxy Fold cover
+~280px) in every view. Harness: `eskills:stack-gotchas` → "mobile rendering in WSL".
 
 ## UX checks
 
