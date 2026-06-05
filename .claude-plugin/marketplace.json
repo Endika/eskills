@@ -9,7 +9,7 @@
     {
       "name": "eskills",
       "source": "./",
-      "version": "0.7.0",
+      "version": "0.7.1",
       "description": "Lean personal skills: conventions, task flow, and quality lenses. Requires the superpowers plugin.",
       "category": "development",
       "homepage": "https://github.com/Endika/eskills"
