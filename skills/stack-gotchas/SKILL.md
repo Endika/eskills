@@ -35,6 +35,28 @@ rate_limit` core looks healthy. Usually triggered by a burst (dependabot opening
   Durable fix: give release-please a **PAT** (its PRs then trigger CI) and drop the
   unconditional self-redispatch.
 
+## release-please: "GitHub Actions is not permitted to create or approve pull requests" (new repo)
+
+- **Symptom:** on a **freshly created** repo, the Release workflow's release-please step
+  fails almost immediately (~15s) with `release-please failed: GitHub Actions is not
+  permitted to create or approve pull requests.` The CI workflow is fine; only release PR
+  creation fails.
+- **Means:** new repos default the repo Actions setting to
+  `default_workflow_permissions=read` + `can_approve_pull_request_reviews=false`.
+  release-please must **open its release PR**, and the repo/org toggle overrides the
+  workflow-level `permissions: pull-requests: write` — so the in-workflow grant is not
+  enough on its own.
+- **Fix:** enable it once (Settings → Actions → General → "Allow GitHub Actions to create
+  and approve pull requests"), via API:
+  ```
+  gh api -X PUT repos/<owner>/<repo>/actions/permissions/workflow \
+    -f default_workflow_permissions=write -F can_approve_pull_request_reviews=true
+  gh run rerun <failed-release-run-id>
+  ```
+  Do this right after `gh repo create` for any new FAP / sister app — it's a one-time
+  per-repo setting, not a code or token problem. (Distinct from the secondary rate-limit
+  and auto-merge-loop failures above.)
+
 ## GitHub Pages: deploy rejected with empty logs after master→main rename
 
 - **Symptom:** the deploy job fails with **no steps and empty logs**.
