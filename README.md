@@ -54,6 +54,7 @@ Invoked as `eskills:<name>`.
 | `context-budget` | Context feels heavy / added skills, MCP, or memory — audits whole-setup token consumption with a prioritized trim list.                                                                                   |
 | `exploit-hunt`   | Hunting actually-exploitable vulnerabilities (SSRF, SQLi, command injection, RCE, path traversal, XSS) — offensive counterpart to `security-bar`, on-demand, not a per-task lens.                         |
 | `stacks`         | Working in a non-default stack (Flipper FAP/C now; Django/Flask/FastAPI coming) — per-stack architecture/build/test/release conventions under `references/<stack>/`. One skill, many stacks.              |
+| `gdpr`           | Building/shipping/auditing a B2C app for GDPR/privacy — data-posture classifier, decision gates, lawful basis/minimization/retention/DSR, processors & transfers, privacy notice, cookieless analytics.   |
 
 ### Quality lenses
 
@@ -101,7 +102,7 @@ flowchart TD
 
   subgraph P2["Phase 2 — Build (auto, per task)"]
     direction TB
-    IMP["1 · Implementer<br/>implement · test · commit · self-review<br/>pulls eskills:stacks · stack-gotchas as needed"]
+    IMP["1 · Implementer<br/>implement · test · commit · self-review<br/>pulls eskills:stacks · stack-gotchas · gdpr as needed"]
     SR["2 · Spec reviewer<br/>independent · does it match the spec?"]
     AV["3 · Adversarial verifier<br/>fresh context · re-runs lint + types + tests<br/>defaults to NOT done"]
     QR["4 · Quality reviewer<br/>applies only the lenses that fit · cap 4"]
