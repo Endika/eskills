@@ -53,6 +53,7 @@ Invoked as `eskills:<name>`.
 | `stack-gotchas`  | Hitting a known failure in my stack — release-please, GitHub Pages, Supabase — for a direct diagnose-and-recover recipe.                                                                                  |
 | `context-budget` | Context feels heavy / added skills, MCP, or memory — audits whole-setup token consumption with a prioritized trim list.                                                                                   |
 | `exploit-hunt`   | Hunting actually-exploitable vulnerabilities (SSRF, SQLi, command injection, RCE, path traversal, XSS) — offensive counterpart to `security-bar`, on-demand, not a per-task lens.                         |
+| `stacks`         | Working in a non-default stack (Flipper FAP/C now; Django/Flask/FastAPI coming) — per-stack architecture/build/test/release conventions under `references/<stack>/`. One skill, many stacks.              |
 
 ### Quality lenses
 
@@ -163,7 +164,8 @@ make details    # component inventory + token cost (anti-bloat watch)
 make tag        # create the release tag (validates plugin.json vs marketplace)
 ```
 
-Single `main`, linear history, no feature branches. Releases via
+Feature work on short-lived branches (`feat/…`, `fix/…`, `chore/…`) → PR →
+**rebase**-merge, so `main` stays linear (never a merge commit). Releases via
 [release-please](https://github.com/googleapis/release-please) (Conventional Commits →
 version bump + CHANGELOG + tag).
 
