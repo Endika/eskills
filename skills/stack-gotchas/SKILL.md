@@ -125,14 +125,19 @@ rate_limit` core looks healthy. Usually triggered by a burst (dependabot opening
 
 ## Flipper FAP: release-please leaves application.fam un-bumped
 
-- **Symptom:** `version.h` and the manifest bump on release, but `application.fam`'s
-  `fap_version` stays behind → catalog/CI version mismatch.
-- **Means:** the `generic` updater needs the marker comment and it's missing/edited —
-  `fap_version="x.y.z"  # x-release-please-version`. Without the exact `x-release-please-version`
-  comment on that line, the updater silently no-ops.
-- **Fix:** restore the marker comment on the `fap_version` line; keep the triad
-  `application.fam` ↔ `version.h` ↔ `.release-please-manifest.json` in sync. See
-  `stacks/references/flipper/release-please.md`.
+- **Symptom:** one leg of the triad stays behind on release — e.g. `application.fam`'s
+  `fap_version`, OR `include/version.h`'s constant — while the others bump → catalog/CI
+  mismatch, and an in-app "version" string shows the stale number.
+- **Means:** the `generic` updater only replaces a version on a line that **itself carries**
+  the `x-release-please-version` marker. The marker must be **INLINE on the same line** as
+  the value — `fap_version="x.y.z"  # x-release-please-version` and
+  `#define APP_VERSION "x.y.z" // x-release-please-version`. A marker on a **separate line
+  above** the `#define` (or a missing/edited marker) makes the updater silently no-op that
+  file. (Hit on flipper-tutu: version.h had the marker on its own line and stuck at 0.1.0
+  while fam/manifest advanced.)
+- **Fix:** put the marker inline on each version-bearing line; sync the lagging file to the
+  current version once by hand; keep the triad `application.fam` ↔ `include/version.h` ↔
+  `.release-please-manifest.json` aligned. See `stacks/references/flipper/release-please.md`.
 
 ## Flipper FAP: catalog submission rejected on version/commit
 
