@@ -52,7 +52,7 @@ Invoked as `eskills:<name>`.
 | `postmortem`     | After an important bug/failure — capture, root cause, fix, lesson as an archivable doc.                                                                                                                   |
 | `stack-gotchas`  | Hitting a known failure in my stack — release-please, GitHub Pages, Supabase — for a direct diagnose-and-recover recipe.                                                                                  |
 | `context-budget` | Context feels heavy / added skills, MCP, or memory — audits whole-setup token consumption with a prioritized trim list.                                                                                   |
-| `exploit-hunt`   | Hunting actually-exploitable vulnerabilities (SSRF, SQLi, command injection, RCE, path traversal, XSS) — offensive counterpart to `security-bar`, on-demand, not a per-task lens.                          |
+| `exploit-hunt`   | Hunting actually-exploitable vulnerabilities (SSRF, SQLi, command injection, RCE, path traversal, XSS) — offensive counterpart to `security-bar`, on-demand, not a per-task lens.                         |
 
 ### Quality lenses
 
@@ -65,6 +65,82 @@ review stage. Hard cap of **4**.
 | `security-bar` | Reviewing for security — my checklist on top of `security-review`.                             |
 | `arch-bar`     | Judging whether an architecture fits its scale — catches over- and under-engineering.          |
 | `perf-bar`     | Assessing performance/algorithmic soundness — Big-O, N+1, egress, benchmarks.                  |
+
+## The task-flow, end to end
+
+How `task-flow` sequences everything — Phase 1 → the single human gate → the Phase 2
+per-task loop (where the quality lenses fan out) → Phase 3. The quality lenses live in
+step 4 of the loop.
+
+```mermaid
+flowchart TD
+  classDef gate fill:#FFF1EF,stroke:#FF5A47,stroke-width:2px,color:#9A3412
+  classDef plan fill:#EEF2FF,stroke:#6366F1,color:#3730A3
+  classDef lens fill:#F8FAFC,stroke:#94A3B8,color:#0F172A
+  classDef offensive fill:#FFF5F4,stroke:#DC2626,color:#991B1B
+
+  subgraph P1["Phase 1 — Understand and plan (auto, adaptive)"]
+    direction TB
+    SI["eskills:spec-intake<br/>objective · acceptance criteria · constraints · DoD<br/>classify greenfield/brownfield · flag hard-tech"]
+    CE["feature-dev:code-explorer<br/>understand the existing code"]
+    SP["SPIKE — 2-3 approaches<br/>benchmark with perf-bar · pick before planning"]
+    BR["superpowers:brainstorming<br/>refine intent and trade-offs"]
+    WP["superpowers:writing-plans<br/>files · concrete change · acceptance criteria · validation commands"]
+    PLAN(["PLAN + acceptance criteria + subagent design + rationale"])
+    SI -. if brownfield .-> CE
+    SI -. if hard-tech .-> SP
+    SI --> BR
+    CE --> BR
+    SP --> BR
+    BR --> WP --> PLAN
+  end
+
+  PLAN --> GATE{{"HUMAN GATE — the only human stop<br/>review and approve the plan · then /compact"}}
+  GATE --> IMP
+
+  subgraph P2["Phase 2 — Build (auto, per task)"]
+    direction TB
+    IMP["1 · Implementer<br/>implement · test · commit · self-review"]
+    SR["2 · Spec reviewer<br/>independent · does it match the spec?"]
+    AV["3 · Adversarial verifier<br/>fresh context · re-runs lint + types + tests<br/>defaults to NOT done"]
+    QR["4 · Quality reviewer<br/>applies only the lenses that fit · cap 4"]
+    UX["ux-bar<br/>semantic color · tokens · a11y · responsive"]
+    SEC["security-bar<br/>client guards are not security · RLS · server-side authz"]
+    ARCH["arch-bar<br/>over- and under-engineering"]
+    PERF["perf-bar<br/>Big-O · N+1 · egress"]
+    DONE(["all green → next task"])
+    RESPEC["RESPEC GATE — human-pulled<br/>pause · correct the spec · re-plan · relaunch"]
+    EH["exploit-hunt — offensive, on-demand<br/>NOT in the per-task loop"]
+    IMP --> SR --> AV --> QR
+    QR --> UX
+    QR --> SEC
+    QR --> ARCH
+    QR --> PERF
+    UX --> DONE
+    SEC --> DONE
+    ARCH --> DONE
+    PERF --> DONE
+    DONE -. next task .-> IMP
+    IMP -. spec is wrong .-> RESPEC
+    RESPEC -. re-spec → re-plan → relaunch .-> IMP
+    SEC -. offensive counterpart .-> EH
+  end
+
+  DONE --> VBC
+
+  subgraph P3["Phase 3 — Finish (auto)"]
+    direction TB
+    VBC["superpowers:verification-before-completion<br/>+ a final review pass"]
+    FIN["superpowers:finishing-a-development-branch"]
+    REL["PR / release<br/>Conventional Commits (eskills:standards) · release-please"]
+    VBC --> FIN --> REL
+  end
+
+  class GATE,RESPEC gate
+  class PLAN plan
+  class UX,SEC,ARCH,PERF lens
+  class EH offensive
+```
 
 ## How it relates to upstream
 
