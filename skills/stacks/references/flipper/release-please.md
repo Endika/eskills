@@ -69,6 +69,34 @@ generator like trivia):
   run: gh release upload ... # attach the .fap artifact
 ```
 
+## Auto-merging the release PR (sister-app pattern)
+
+To make the release PR auto-merge (as the web sister apps do — kartaak/EventSplit/mintza/
+converthub/Monete), fold the merge into the release workflow. After the release-please
+step, when it opened a PR, rebase-merge it and re-dispatch so the merge is picked up:
+
+```yaml
+permissions: { actions: write, contents: write, pull-requests: write }
+# token: ${{ secrets.RELEASE_PLEASE_TOKEN || github.token }}  # PAT lets the merge re-trigger workflows
+- if: ${{ steps.release.outputs.pr }}
+  env: { GH_TOKEN: ${{ secrets.RELEASE_PLEASE_TOKEN || github.token }}, REPO: ${{ github.repository }}, WORKFLOW: ${{ github.workflow }}, PR_JSON: ${{ steps.release.outputs.pr }} }
+  run: |
+    PR=$(echo "$PR_JSON" | jq -r .number); BRANCH=$(echo "$PR_JSON" | jq -r .headBranchName)
+    gh pr merge --rebase --auto -R "$REPO" "$PR" \
+      || gh pr merge --rebase -R "$REPO" "$PR" \
+      || gh api -X PATCH "repos/$REPO/git/refs/heads/main" -f sha="$(gh api "repos/$REPO/git/refs/heads/$BRANCH" --jq .object.sha)"
+    # wait for MERGED, delete the branch, then: gh workflow run "$WORKFLOW" -R "$REPO" --ref main
+```
+
+Required one-time repo setup (new repos default these OFF — see `stack-gotchas`):
+- `gh api -X PATCH repos/<o>/<r> -F allow_auto_merge=true -F allow_rebase_merge=true`
+- `gh api -X PUT repos/<o>/<r>/actions/permissions/workflow -f default_workflow_permissions=write -F can_approve_pull_request_reviews=true`
+- Add the **`RELEASE_PLEASE_TOKEN`** PAT secret (all the sister apps have it) so the bot's
+  merge re-triggers workflows and the release is cut hands-off. Without it, the
+  `github.token` fallback + the explicit `gh workflow run` re-dispatch still close the loop,
+  but the PAT is the durable fix (avoids the auto-merge-loop gotcha). `flipper-tutu` is the
+  first Flipper app wired this way (the other four still merge their release PR by hand).
+
 ## Catalog
 
 Submitting to the official catalog: the manifest's `commit_sha` must point at the
