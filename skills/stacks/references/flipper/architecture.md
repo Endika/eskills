@@ -18,7 +18,11 @@ Mirror `src/` and `include/` with the same layer dirs. Canonical layers:
 - **`platform/`** — the **furi isolation boundary**: thin wrappers over furi/RTC/random
   (`hf_rtc`, `random_port`). Domain calls plain-C signatures; only these files include furi,
   so everything below them compiles and tests on the host.
-- **`ui/` + `scenes/` + `views/`** — GUI (scene manager, custom views).
+- **`ui/` + `scenes/` + `views/`** — GUI (scene manager, custom views). **The app must
+  drive its own redraw:** draw once right after `gui_add_view_port`, and never depend on
+  input to paint (finite queue timeout + `view_port_update()` each tick, or update after
+  every state change). Relying on the Apps-menu loader animation to force the first frame
+  is the favourites/quick-button blank-UI bug — see `eskills:stack-gotchas`.
 - **`app/`** — entry point + app-state orchestration (`*_app.c`, the `entry_point`).
 - **`data/` + `i18n/`** — embedded packs as generated C arrays (trivia's bilingual packs).
 

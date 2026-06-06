@@ -1,6 +1,6 @@
 ---
 name: stack-gotchas
-description: Use when hitting a known failure in my stack — release-please rate-limit or auto-merge loop, GitHub Pages env branch-policy, Supabase egress/RLS/stale-client-blob, a Flipper FAP release/build/version-triad failure, or verifying mobile/responsive rendering in WSL — for a direct diagnose-and-recover recipe.
+description: Use when hitting a known failure in my stack — release-please rate-limit or auto-merge loop, GitHub Pages env branch-policy, Supabase egress/RLS/stale-client-blob, a Flipper FAP release/build/version-triad failure or a FAP whose UI won't refresh when launched from favourites/quick-buttons, or verifying mobile/responsive rendering in WSL — for a direct diagnose-and-recover recipe.
 ---
 
 # stack-gotchas
@@ -136,6 +136,25 @@ rate_limit` core looks healthy. Usually triggered by a burst (dependabot opening
 - **Fix:** add a path-scoped `--suppress=unusedFunction:<path>` (or inline
   `// cppcheck-suppress`), never disable the check globally. See
   `stacks/references/flipper/formatting.md`.
+
+## Flipper FAP: blank/stale UI when launched from favourites or quick-buttons
+
+- **Symptom:** the screen is blank or frozen (UI never refreshes) when the app is opened
+  from a **desktop favourite** or a **quick-press button** shortcut — but it works fine
+  when opened from the **Apps menu**. (Reported by catalog users on two of my apps.)
+- **Means:** the app only calls `view_port_update()` in reaction to input — the main loop
+  blocks on `furi_message_queue_get(..., FuriWaitForever)` and paints nothing until a key
+  is pressed. The Apps menu **masks** it: the loader's background hourglass animation
+  forces a GUI redraw, so the first frame appears. Favourites/quick-buttons skip that
+  loader → nothing triggers the draw. The app was leaning on an external redraw ("a bug"),
+  not driving its own.
+- **Fix:** force the redraw from the app itself. (1) Draw once immediately after
+  `gui_add_view_port(...)` with `view_port_update(view_port)`. (2) Don't depend on input to
+  paint: either give the queue a **finite timeout** (`furi_message_queue_get(q, &e, 50)`)
+  and call `view_port_update()` **every loop tick**, or call it after **every** state
+  change (including the initial state). Same fix for a `ViewDispatcher`/`SceneManager` app:
+  ensure the first scene transition happens before the loop blocks. See
+  `stacks/references/flipper/architecture.md`.
 
 ## GDPR: open-RLS exposes personal data
 
