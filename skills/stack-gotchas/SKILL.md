@@ -1,6 +1,6 @@
 ---
 name: stack-gotchas
-description: Use when hitting a known failure in my stack — release-please rate-limit or auto-merge loop, GitHub Pages env branch-policy, Supabase egress/RLS/stale-client-blob, or verifying mobile/responsive rendering in WSL — for a direct diagnose-and-recover recipe.
+description: Use when hitting a known failure in my stack — release-please rate-limit or auto-merge loop, GitHub Pages env branch-policy, Supabase egress/RLS/stale-client-blob, a Flipper FAP release/build/version-triad failure, or verifying mobile/responsive rendering in WSL — for a direct diagnose-and-recover recipe.
 ---
 
 # stack-gotchas
@@ -100,3 +100,39 @@ rate_limit` core looks healthy. Usually triggered by a burst (dependabot opening
   rejecting writes whose version < stored (→ HTTP 426 → "please update" prompt); flip the
   PWA to `autoUpdate`. **Operational rule: bump `SCHEMA_VERSION` whenever the snapshot shape
   changes**, or the guard won't protect the new field.
+
+## Flipper FAP: release-please leaves application.fam un-bumped
+
+- **Symptom:** `version.h` and the manifest bump on release, but `application.fam`'s
+  `fap_version` stays behind → catalog/CI version mismatch.
+- **Means:** the `generic` updater needs the marker comment and it's missing/edited —
+  `fap_version="x.y.z"  # x-release-please-version`. Without the exact `x-release-please-version`
+  comment on that line, the updater silently no-ops.
+- **Fix:** restore the marker comment on the `fap_version` line; keep the triad
+  `application.fam` ↔ `version.h` ↔ `.release-please-manifest.json` in sync. See
+  `stacks/references/flipper/release-please.md`.
+
+## Flipper FAP: catalog submission rejected on version/commit
+
+- **Symptom:** the official catalog CI fails the entry.
+- **Means:** the manifest `commit_sha` points at a later **fix** commit instead of the
+  tagged **release** commit, or the entry version ≠ `fap_version`.
+- **Fix:** point `commit_sha` at the release commit; make the catalog version equal
+  `fap_version`. (Catalog-update-flow memory + `stacks` → flipper.)
+
+## Flipper FAP: host test won't compile (furi symbols)
+
+- **Symptom:** `make test` fails to compile with undefined furi references.
+- **Means:** a file under test (transitively) includes `furi` — furi isn't available on the
+  host gcc build; the layering leaked.
+- **Fix:** keep `domain/` pure C and move the furi-touching code behind a plain-C signature
+  in `platform/`. Only test `domain/`. See `stacks/references/flipper/architecture.md`.
+
+## Flipper FAP: cppcheck flags entry points as unusedFunction
+
+- **Symptom:** `make linter` errors on `unusedFunction` for `main.c` / `*_app.c` / port files.
+- **Means:** those functions are called by the firmware, not within the TU — a cppcheck
+  false positive, not dead code.
+- **Fix:** add a path-scoped `--suppress=unusedFunction:<path>` (or inline
+  `// cppcheck-suppress`), never disable the check globally. See
+  `stacks/references/flipper/formatting.md`.
