@@ -101,7 +101,7 @@ flowchart TD
 
   subgraph P2["Phase 2 — Build (auto, per task)"]
     direction TB
-    IMP["1 · Implementer<br/>implement · test · commit · self-review"]
+    IMP["1 · Implementer<br/>implement · test · commit · self-review<br/>pulls eskills:stacks · stack-gotchas as needed"]
     SR["2 · Spec reviewer<br/>independent · does it match the spec?"]
     AV["3 · Adversarial verifier<br/>fresh context · re-runs lint + types + tests<br/>defaults to NOT done"]
     QR["4 · Quality reviewer<br/>applies only the lenses that fit · cap 4"]
