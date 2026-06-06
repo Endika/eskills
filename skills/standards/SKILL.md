@@ -20,10 +20,16 @@ once, then proceed (don't rehash).
 - **Bots are exempt:** dependabot / release-please author their own commits with structured multi-line bodies (machine-readable footers, changelogs). That's expected — the one-line rule governs commits I write, not bot commits.
 - **Integrate PRs by rebase** (squash only for a messy WIP branch) — **never a merge commit**. `main` stays strictly linear; release-please keeps its release PR rebased on `main` automatically.
 
+## Branches
+
+- **Never commit straight to the default branch.** Feature work goes on a short-lived branch (`feat/…`, `fix/…`, `chore/…`), pushed and opened as a **PR** — even in a solo repo.
+- One branch = one purpose; keep it small. Integrate by **rebase** (see Commits), then delete the branch. `main` stays strictly linear.
+- **Bots are exempt:** release-please and dependabot manage their own branches/PRs.
+
 ## Pull Requests
 
 - **Title:** same `type(scope): subject` as a commit — English, imperative, one line.
-- **Body — clear and simple to read.** Lead with one or two sentences of _what changed and why_, then a short bullet list of the notable changes. Add a section (testing, risks, screenshots) only when it earns its place — no fixed template, no filler headings.
+- **Body — clear and simple to read, by sections** (the structure lives here, not in a repo template file): **What & why** (1-2 sentences) → **Changes** (short bullets) → **Testing** (commands run + result) → **Notes** (risks / screenshots / follow-ups). **Drop any section that doesn't apply** — scannable, no filler, no checklist boilerplate.
 - **No trailers, no footer:** never a `🤖 Generated with Claude Code` footer and never `Co-Authored-By:` — same rule as commits.
 - Link the issue with `Closes #N` when there is one.
 
