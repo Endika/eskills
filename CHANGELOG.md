@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.9.0](https://github.com/Endika/eskills/compare/v0.8.0...v0.9.0) (2026-06-06)
+
+
+### Features
+
+* **gdpr:** add GDPR/privacy skill with privacy-first analytics ([f56a240](https://github.com/Endika/eskills/commit/f56a2400dd949cd6aa79185822bdea4e9c117761))
+
 ## [0.8.0](https://github.com/Endika/eskills/compare/v0.7.1...v0.8.0) (2026-06-06)
 
 
