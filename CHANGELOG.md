@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.8.0](https://github.com/Endika/eskills/compare/v0.7.1...v0.8.0) (2026-06-06)
+
+
+### Features
+
+* **stacks:** add per-stack conventions skill, Flipper Zero (FAP/C) first ([decb789](https://github.com/Endika/eskills/commit/decb78908aead033438509da0673c7ce9b0049af))
+* **standards:** adopt feature-branch + PR workflow with typed PR bodies ([a81a3bc](https://github.com/Endika/eskills/commit/a81a3bc96c843c9b9a93d46da65ee96856867fe7))
+
 ## [0.7.1](https://github.com/Endika/eskills/compare/v0.7.0...v0.7.1) (2026-06-05)
 
 
