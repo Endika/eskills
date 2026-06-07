@@ -39,7 +39,7 @@ rate_limit` core looks healthy. Usually triggered by a burst (dependabot opening
 
 - **Symptom:** on a **freshly created** repo, the Release workflow's release-please step
   fails almost immediately (~15s) with `release-please failed: GitHub Actions is not
-  permitted to create or approve pull requests.` The CI workflow is fine; only release PR
+permitted to create or approve pull requests.` The CI workflow is fine; only release PR
   creation fails.
 - **Means:** new repos default the repo Actions setting to
   `default_workflow_permissions=read` + `can_approve_pull_request_reviews=false`.
