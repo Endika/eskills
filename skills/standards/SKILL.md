@@ -1,6 +1,6 @@
 ---
 name: standards
-description: Use when about to commit, write or design tests, choose an ID type, or push — enforces my non-negotiable conventions for commits, test design, repo hygiene, IDs, and pre-push checks.
+description: Use when about to commit, write or design tests, name identifiers, write user-facing copy, choose an ID type, or push — enforces my non-negotiable conventions for commits, test design, repo hygiene, inclusive language, IDs, and pre-push checks.
 ---
 
 # standards
@@ -52,6 +52,25 @@ catches it", don't write it.
 - **Skill defaults are wrong here — override them.** `brainstorming`, `writing-plans` and `task-flow` default to saving specs/plans at `docs/superpowers/...` _inside_ the repo and then committing them. Do NOT follow that. When bootstrapping a project, create `../<repo>-notes/` as a sibling of the repo **before the first spec/plan write**, and target it from that very first Write. The first time a spec lands in `docs/` inside the repo, the rule is already broken.
 - If an internal doc reaches the repo anyway: `git rm` it (or rewrite history with the user's OK if already pushed) and move it to `../<repo>-notes/`. Never "fix" it by adding the path to `.gitignore`.
 - Code, identifiers, log strings, file/var names, UI strings → **English**. Comments minimal — only the non-obvious "why".
+
+## Inclusive language
+
+Applies to identifiers, comments, commits, log strings **and** user-facing copy in every
+locale. Swap the term at write time; if a neutral genuinely reads worse, flag it once and
+pick the least-bad rephrase — don't revert to the excluding form.
+
+- **Code / technical (English) — never introduce the legacy term in new code:**
+  - `master`/`slave` → `primary`/`replica`, `leader`/`follower`, or `main`/`worker` (by domain); the default branch is `main`.
+  - `whitelist`/`blacklist` → `allowlist`/`blocklist` (or `allowed`/`blocked`).
+  - `grandfathered` → `legacy` / `pre-existing`; `sanity check` → `quick check` / `validation`.
+  - `dummy` → `placeholder` / `sample`; `man-hours` → `person-hours`; `manned` → `staffed`.
+  - Don't churn third-party/library names you don't control — fix what's yours.
+- **User-facing copy (ca/en/es/eu/gl/va) — neutral & collective, never split forms or neologisms:**
+  - Don't assume the reader's gender: impersonal or neutral 2nd person — "te damos la bienvenida", not "bienvenidos".
+  - Don't assume family shape or roles: "la familia de…", not "los papás/padres de…"; "tu familia" / "persona adulta", not "mamá/papá".
+  - Neutralize with real words, **not** "/" splits and **not** "-x/-e": "peques" / "la infancia" (not "niños/as", not "niñes"); "participantes" / "quien juega" (not "usuarios/as"); "el equipo". If no neutral term fits, **rephrase the sentence** rather than gender it.
+  - Skip ableist/violent filler ("está de locos", "te vas a volver loco") when a plain neutral exists.
+- `eskills:ux-bar` enforces this for UI strings; `eskills:standards` for code, commits and identifiers.
 
 ## IDs
 

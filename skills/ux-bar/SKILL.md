@@ -71,6 +71,9 @@ re-measuring **before** editing. Verify down to **320px** (real floor; Galaxy Fo
 
 - Destructive actions confirm or are undoable; loading/empty/error states exist.
 - Graceful degradation: a missing key/integration hides the feature, it doesn't crash.
+- **Inclusive copy:** UI strings follow the inclusive-language rule in `eskills:standards` —
+  neutral/collective wording (no `niños/as`, no `-x/-e`), no assumed gender or family shape.
+  Report offenders `file:line → fix`.
 
 ## Output
 
