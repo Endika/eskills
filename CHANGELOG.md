@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.10.0](https://github.com/Endika/eskills/compare/v0.9.0...v0.10.0) (2026-06-07)
+
+
+### Features
+
+* **standards:** add inclusive-language convention ([129bfff](https://github.com/Endika/eskills/commit/129bfff56e763df5ef6f0d693a1e8ed3dba6e2a2))
+
 ## [0.9.0](https://github.com/Endika/eskills/compare/v0.8.0...v0.9.0) (2026-06-06)
 
 
