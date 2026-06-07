@@ -89,6 +89,7 @@ permissions: { actions: write, contents: write, pull-requests: write }
 ```
 
 Required one-time repo setup (new repos default these OFF — see `stack-gotchas`):
+
 - `gh api -X PATCH repos/<o>/<r> -F allow_auto_merge=true -F allow_rebase_merge=true`
 - `gh api -X PUT repos/<o>/<r>/actions/permissions/workflow -f default_workflow_permissions=write -F can_approve_pull_request_reviews=true`
 - Add the **`RELEASE_PLEASE_TOKEN`** PAT secret (all the sister apps have it) so the bot's
