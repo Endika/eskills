@@ -85,8 +85,13 @@ permitted to create or approve pull requests.` The CI workflow is fine; only rel
      deployment ID **is the commit SHA**. Aborting cancels the deployment for that SHA, and
      the cancelled state is permanent, so every later attempt at the _same commit_ is
      rejected outright. Retrying can never work.
-- **Fix:** the jammed commit is unrecoverable — **land a new commit** so the deploy gets a
-  fresh SHA. Prefer a real pending change over an empty commit. Then set
+  3. **Never press "Re-run".** The first attempt already uploaded the `github-pages`
+     artifact; the re-run uploads a second with the same name into the same run, and
+     `deploy-pages` refuses with `Multiple artifacts named "github-pages" were unexpectedly
+found for this workflow run. Artifact count is 2.` A third dead end for the same commit.
+- **Fix:** all three routes are closed for a jammed commit — re-run, re-dispatch and waiting
+  each fail by a different mechanism. **Land a new commit** so the deploy gets a fresh SHA
+  and a clean run. Prefer a real pending change over an empty commit. Then set
   `concurrency: {group: pages, cancel-in-progress: false}`: cancelling does not stop the
   deployment it already queued, it just poisons that SHA, so `true` manufactures this
   failure on every burst of merges. GitHub's own Pages starter workflow says the same —
