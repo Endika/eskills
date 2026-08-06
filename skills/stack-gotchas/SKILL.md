@@ -70,23 +70,31 @@ permitted to create or approve pull requests.` The CI workflow is fine; only rel
   ```
   Set the default branch before the first deploy; ensure Pages `build_type=workflow`.
 
-## GitHub Pages: every deploy dies in `deployment_queued` after a burst of merges
+## GitHub Pages: `deployment_queued` timeout, then every retry says "Deployment cancelled"
 
-- **Symptom:** after merging several PRs (plus a release) in quick succession, deploy runs
-  sit at `Current status: deployment_queued` for the whole timeout, then
-  `##[error]Timeout reached, aborting!`. Logs are **full**, the build step succeeded, and
-  one or two earlier runs show as `cancelled`. The site keeps serving the previous bundle.
-- **Means:** `concurrency: {group: pages, cancel-in-progress: true}`. Cancelling the
-  **workflow run** does not cancel the **Pages deployment** it already queued; the orphan
-  blocks the queue and every later run waits on a deployment that will never finish. This
-  is _not_ the branch-policy failure above — that one has empty logs.
-- **Fix:** set `cancel-in-progress: false`. GitHub's own Pages starter workflow says so
-  outright: _"do NOT cancel in-progress runs, as we want to allow these production
-  deployments to complete."_ Deploys then queue and run in order. To unstick a queue that
-  has already jammed, dispatch a clean run: `gh workflow run deploy.yml --ref main`.
-- **Before diagnosing a bundle mismatch, `git pull`.** Comparing a local `dist/` against
-  the live page after a release, without pulling the release commit, shows a hash mismatch
-  that is purely a stale `package.json` version — not a failed deploy. Verify with
+- **Symptom:** two distinct failures, usually in that order. First, deploy runs sit at
+  `Current status: deployment_queued` for the whole timeout and abort with
+  `##[error]Timeout reached, aborting!` — logs are **full** and the build step succeeded
+  (unlike the empty-log branch-policy failure above). Then every re-run or re-dispatch of
+  that same commit fails within seconds with `##[error]Deployment cancelled.`
+- **Means:** two different things, and conflating them wastes an hour.
+  1. The **timeout** is GitHub-side; githubstatus can read "All Systems Operational" while
+     it happens, and it is intermittent — the same commit may deploy fine minutes later.
+     No local cause was ever established.
+  2. The **sticky cancellation** is deterministic and the important one. The Pages
+     deployment ID **is the commit SHA**. Aborting cancels the deployment for that SHA, and
+     the cancelled state is permanent, so every later attempt at the _same commit_ is
+     rejected outright. Retrying can never work.
+- **Fix:** the jammed commit is unrecoverable — **land a new commit** so the deploy gets a
+  fresh SHA. Prefer a real pending change over an empty commit. Then set
+  `concurrency: {group: pages, cancel-in-progress: false}`: cancelling does not stop the
+  deployment it already queued, it just poisons that SHA, so `true` manufactures this
+  failure on every burst of merges. GitHub's own Pages starter workflow says the same —
+  _"do NOT cancel in-progress runs, as we want to allow these production deployments to
+  complete."_
+- **Before diagnosing a bundle mismatch, `git pull`.** Comparing a local `dist/` against the
+  live page after a release, without pulling the release commit, shows a hash mismatch that
+  is purely a stale `package.json` version — not a failed deploy. Verify with
   `curl -s <url> | grep -oE 'index-[A-Za-z0-9_-]+\.js'` against a fresh build of the
   **pulled** default branch.
 
