@@ -1,6 +1,6 @@
 ---
 name: stack-gotchas
-description: Use when hitting a known failure in my stack — release-please rate-limit or auto-merge loop, GitHub Pages env branch-policy, Supabase egress/RLS/stale-client-blob, a Flipper FAP release/build/version-triad failure or a FAP whose UI won't refresh when launched from favourites/quick-buttons, or verifying mobile/responsive rendering in WSL — for a direct diagnose-and-recover recipe.
+description: Use when hitting a known failure in my stack — release-please rate-limit or auto-merge loop, GitHub Pages env branch-policy or a deploy queue jammed by cancel-in-progress, Supabase egress/RLS/stale-client-blob, a Flipper FAP release/build/version-triad failure or a FAP whose UI won't refresh when launched from favourites/quick-buttons, or verifying mobile/responsive rendering in WSL — for a direct diagnose-and-recover recipe.
 ---
 
 # stack-gotchas
@@ -69,6 +69,26 @@ permitted to create or approve pull requests.` The CI workflow is fine; only rel
   gh api -X DELETE repos/<owner>/<repo>/environments/github-pages/deployment-branch-policies/<id>
   ```
   Set the default branch before the first deploy; ensure Pages `build_type=workflow`.
+
+## GitHub Pages: every deploy dies in `deployment_queued` after a burst of merges
+
+- **Symptom:** after merging several PRs (plus a release) in quick succession, deploy runs
+  sit at `Current status: deployment_queued` for the whole timeout, then
+  `##[error]Timeout reached, aborting!`. Logs are **full**, the build step succeeded, and
+  one or two earlier runs show as `cancelled`. The site keeps serving the previous bundle.
+- **Means:** `concurrency: {group: pages, cancel-in-progress: true}`. Cancelling the
+  **workflow run** does not cancel the **Pages deployment** it already queued; the orphan
+  blocks the queue and every later run waits on a deployment that will never finish. This
+  is _not_ the branch-policy failure above — that one has empty logs.
+- **Fix:** set `cancel-in-progress: false`. GitHub's own Pages starter workflow says so
+  outright: _"do NOT cancel in-progress runs, as we want to allow these production
+  deployments to complete."_ Deploys then queue and run in order. To unstick a queue that
+  has already jammed, dispatch a clean run: `gh workflow run deploy.yml --ref main`.
+- **Before diagnosing a bundle mismatch, `git pull`.** Comparing a local `dist/` against
+  the live page after a release, without pulling the release commit, shows a hash mismatch
+  that is purely a stale `package.json` version — not a failed deploy. Verify with
+  `curl -s <url> | grep -oE 'index-[A-Za-z0-9_-]+\.js'` against a fresh build of the
+  **pulled** default branch.
 
 ## Verify mobile/responsive rendering in WSL (no sudo)
 
