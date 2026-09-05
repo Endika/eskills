@@ -17,13 +17,14 @@ jobs:
   release-please:
     runs-on: ubuntu-latest
     steps:
-      # Token: a PAT (RELEASE_PLEASE_TOKEN) if present, else GITHUB_TOKEN.
-      # eskills has no required status checks, so GITHUB_TOKEN can rebase-merge
-      # the release PR directly — the "bot PR never gets CI" loop doesn't apply.
       - id: release
         uses: googleapis/release-please-action@v5
         with:
-          token: ${{ secrets.RELEASE_PLEASE_TOKEN || github.token }}
+          # Without a user token the release PR is opened by GITHUB_TOKEN, which triggers
+          # no other workflow: the PR gets zero checks and branch protection blocks it
+          # forever, waiting on a manual approval. all-green is required here now, so the
+          # earlier "no required checks, GITHUB_TOKEN is fine" reasoning no longer holds.
+          token: ${{ secrets.RELEASE_PLEASE_TOKEN || secrets.GITHUB_TOKEN }}
           config-file: release-please-config.json
           manifest-file: .release-please-manifest.json
 
