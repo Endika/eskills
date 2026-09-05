@@ -30,7 +30,9 @@ jobs:
   all-green:
     name: all-green
     needs: [validate, commitlint]
-    if: always()
+    # commitlint only runs on pull requests, and a skipped need must never pass as success —
+    # so gate the aggregator the same way rather than letting every push to main go red.
+    if: always() && github.event_name == 'pull_request'
     runs-on: ubuntu-latest
     steps:
       - name: every required job must have succeeded
