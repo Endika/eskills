@@ -1,0 +1,15 @@
+version: 2
+updates:
+  # Only the action pins are versioned here — the repo itself has no dependencies.
+  # They are pinned to bare major tags, so every update this can ever produce is a
+  # major that goes in by hand; quarterly is the cadence that matches. Security
+  # updates ignore this schedule and still arrive the day a CVE lands.
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: quarterly
+    groups:
+      actions:
+        patterns: ["*"]
+    commit-message:
+      prefix: ci
