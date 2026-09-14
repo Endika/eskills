@@ -61,12 +61,12 @@ Invoked as `eskills:<name>`.
 Short rubrics in my voice — usable standalone on a diff, and invoked by `task-flow`'s
 review stage. Hard cap of **4**.
 
-| Lens           | Use when                                                                                                         |
-| -------------- | ---------------------------------------------------------------------------------------------------------------- |
-| `ux-bar`       | Building/reviewing UI — my design-system, semantic-color and inclusive-copy rules on top of `frontend-design`.   |
-| `security-bar` | Reviewing for security — my checklist on top of `security-review`.                                               |
-| `arch-bar`     | Judging whether an architecture fits its scale — catches over- and under-engineering.                            |
-| `perf-bar`     | Assessing performance/algorithmic soundness — Big-O, N+1, egress, benchmarks; React rule sheet in `references/`. |
+| Lens           | Use when                                                                                                                         |
+| -------------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| `ux-bar`       | Building/reviewing UI — my design-system, semantic-color and inclusive-copy rules on top of `frontend-design`.                   |
+| `security-bar` | Reviewing for security — my checklist on top of `security-review`.                                                               |
+| `arch-bar`     | Judging whether an architecture fits its scale — catches over- and under-engineering.                                            |
+| `perf-bar`     | Assessing performance/algorithmic soundness — Big-O, N+1, egress, benchmarks; React and Vite-build rule sheets in `references/`. |
 
 ## The task-flow, end to end
 

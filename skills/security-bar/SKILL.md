@@ -26,7 +26,12 @@ protection. If it must be enforced, it is enforced on the server.
 - **Input handling** — validate and bound every external input (size, type, shape). Parse,
   don't trust. Watch unbounded growth (a field that can balloon a stored blob).
 - **Secrets** — none in the client bundle or the repo; only public-by-design keys are
-  client-side. Confirm what a shipped key can actually do.
+  client-side. Confirm what a shipped key can actually do. In Vite the mechanism is
+  static inlining at build time: anything `VITE_`-prefixed is pasted into the bundle, and
+  minification is not obfuscation. Two config lines silently widen that blast radius —
+  `loadEnv(mode, cwd, '')` (empty prefix loads **every** host variable, server secrets
+  included) and `envPrefix: ''`. Keep production `build.sourcemap` off unless the maps go
+  to an error tracker; otherwise you ship your original source.
 - **Authz** — every privileged action checks who's allowed, server-side. No "the UI hides
   the button" as the only control.
 - **Supabase RLS** — no table with open anon `SELECT true` **and** `INSERT/UPDATE true`;
