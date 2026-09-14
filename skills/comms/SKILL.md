@@ -52,13 +52,20 @@ One canonical owner per rule — this one links, it doesn't copy.
   issues and comments.
 - **Length is a courtesy.** Lead with the point. If it needs scrolling, it needs cutting or
   a link to the detail.
+- **Don't sound generated.** Not to beat a detector — those don't work — but because the
+  tells are all padding: copula avoidance ("serves as" for _is_), "not just X, but Y",
+  trailing "-ing" clauses that analyse nothing, attribution to nobody ("experts argue"),
+  inflated significance ("a testament to"), and closing pleasantries about the act of
+  writing. The full watchlist, and the parts of it that don't apply to my voice, are in
+  `references/ai-tells.md`.
 
 ## Before it goes out
 
 1. Every factual claim traced to something I checked — not to a plausible memory.
-2. Exactly one ask, or an explicit none.
-3. Would it still read fine forwarded to someone I didn't write it for?
-4. Shown to me in full. Sending, posting or emailing is my action, not the agent's.
+2. No paragraph that survives being deleted.
+3. Exactly one ask, or an explicit none.
+4. Would it still read fine forwarded to someone I didn't write it for?
+5. Shown to me in full. Sending, posting or emailing is my action, not the agent's.
 
 ## Note on upstream mechanics
 
