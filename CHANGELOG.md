@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.11.0](https://github.com/Endika/eskills/compare/v0.10.0...v0.11.0) (2026-09-14)
+
+
+### Features
+
+* **comms:** add outward-text skill and raise the skill cap to 15 ([41e8d89](https://github.com/Endika/eskills/commit/41e8d89eab0ac92f8dd45cf5eed2f50017995f0b))
+* **comms:** add the generated-prose watchlist distilled from Wikipedia's signs of AI writing ([426e0b8](https://github.com/Endika/eskills/commit/426e0b8e4fc689696e149fbfe475e06ab46bbd33))
+
 ## [0.10.0](https://github.com/Endika/eskills/compare/v0.9.0...v0.10.0) (2026-06-07)
 
 
