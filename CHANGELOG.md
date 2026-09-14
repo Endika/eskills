@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.12.2](https://github.com/Endika/eskills/compare/v0.12.1...v0.12.2) (2026-09-14)
+
+
+### Bug Fixes
+
+* **task-flow:** drop deep-research, a dependency that never existed ([6148270](https://github.com/Endika/eskills/commit/61482700ee0ff50b49d6845afccef00adc7233c9))
+
 ## [0.12.1](https://github.com/Endika/eskills/compare/v0.12.0...v0.12.1) (2026-09-14)
 
 
