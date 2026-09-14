@@ -15,9 +15,11 @@ maximalist catalog; every skill earns its place.
   verification-before-completion, finishing-a-development-branch). It is the **only**
   required runtime dependency. Nothing else is installed.
 
-> Optional: `ux-bar` and `security-bar` layer on the `frontend-design` and
-> `security-review` skills respectively, and `task-flow`'s SPIKE step can use
-> `deep-research` / `feature-dev` — each is used only if present, none are required.
+> Optional: `ux-bar` layers on the `frontend-design` skill and `security-bar` on the
+> built-in `security-review`. `task-flow` can dispatch the `code-explorer` and
+> `code-architect` **agents** from the `feature-dev` plugin — that plugin ships agents and
+> a command, no skills — and falls back to the built-in `Explore` agent without it. None
+> of these are required.
 
 ## Install
 
