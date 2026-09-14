@@ -10,6 +10,27 @@
           }
         ]
       }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/ai-tells.py",
+            "if": "Bash(git *)",
+            "timeout": 5,
+            "statusMessage": "Checking prose for generated-text tells"
+          },
+          {
+            "type": "command",
+            "command": "${CLAUDE_PLUGIN_ROOT}/hooks/ai-tells.py",
+            "if": "Bash(gh *)",
+            "timeout": 5,
+            "statusMessage": "Checking prose for generated-text tells"
+          }
+        ]
+      }
     ]
   }
 }

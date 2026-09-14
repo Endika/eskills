@@ -161,6 +161,18 @@ Adapted material carries its provenance where it landed: an `origin:` line in a 
 frontmatter, or an **Origin** section at the foot of a reference file, saying what the
 source was and what had to be rewritten for this stack. If it isn't marked, it's mine.
 
+## Hooks
+
+Two, both shipped with the plugin:
+
+- **`SessionStart`** — injects the precedence rule (this pack overrides `superpowers`) and
+  the notes-directory convention.
+- **`PreToolUse`** on `git *` and `gh *` — matches commit, PR, issue and release text
+  against the high-precision half of `comms/references/ai-tells.md` and **warns without
+  blocking**. Single padding words are deliberately not matched: measured against this
+  repo's own history it fires on 0 of 83 real commits, which is the point — a hook that
+  cries wolf is a hook you turn off.
+
 ## Development
 
 ```bash
