@@ -55,6 +55,7 @@ Invoked as `eskills:<name>`.
 | `exploit-hunt`   | Hunting actually-exploitable vulnerabilities (SSRF, SQLi, command injection, RCE, path traversal, XSS) — offensive counterpart to `security-bar`, on-demand, not a per-task lens.                               |
 | `stacks`         | Working in a non-default stack (Flipper FAP/C and Docker/Compose now; Django/Flask/FastAPI coming) — per-stack architecture/build/test/release conventions under `references/<stack>/`. One skill, many stacks. |
 | `gdpr`           | Building/shipping/auditing a B2C app for GDPR/privacy — data-posture classifier, decision gates, lawful basis/minimization/retention/DSR, processors & transfers, privacy notice, cookieless analytics.         |
+| `comms`          | Writing text that leaves the machine with a person on the other end — email, an issue/comment on a repo I don't own, a maintainer follow-up, release notes, a review-bot reply. Drafts only; sending is mine.   |
 
 ### Quality lenses
 

@@ -70,7 +70,7 @@ pick the least-bad rephrase — don't revert to the excluding form.
   - Don't assume family shape or roles: "la familia de…", not "los papás/padres de…"; "tu familia" / "persona adulta", not "mamá/papá".
   - Neutralize with real words, **not** "/" splits and **not** "-x/-e": "peques" / "la infancia" (not "niños/as", not "niñes"); "participantes" / "quien juega" (not "usuarios/as"); "el equipo". If no neutral term fits, **rephrase the sentence** rather than gender it.
   - Skip ableist/violent filler ("está de locos", "te vas a volver loco") when a plain neutral exists.
-- `eskills:ux-bar` enforces this for UI strings; `eskills:standards` for code, commits and identifiers.
+- `eskills:ux-bar` enforces this for UI strings; `eskills:standards` for code, commits and identifiers; `eskills:comms` for text sent to a person outside this machine.
 
 ## IDs
 
