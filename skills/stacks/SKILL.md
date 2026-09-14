@@ -1,6 +1,6 @@
 ---
 name: stacks
-description: Use when building or maintaining a project in one of my non-default stacks — Flipper Zero FAP in C now, Django / Flask / FastAPI coming — for its architecture, build, test, formatting and release conventions. Routes to references/<stack>/. The web stack (TS / Supabase / PWA) is the pack's implicit default and has no entry here.
+description: Use when building or maintaining a project in one of my non-default stacks — Flipper Zero FAP in C and Docker / Compose now, Django / Flask / FastAPI coming — for its architecture, build, test, formatting, containerization and release conventions. Routes to references/<stack>/. The web stack (TS / Supabase / PWA) is the pack's implicit default and has no entry here.
 ---
 
 # stacks
@@ -27,6 +27,7 @@ pattern traced to a real repo. Read the folder for the stack you're in.
 | Stack                | Folder                | Status                                                      |
 | -------------------- | --------------------- | ----------------------------------------------------------- |
 | Flipper Zero FAP (C) | `references/flipper/` | architecture · build-and-test · formatting · release-please |
+| Docker / Compose     | `references/docker/`  | toolchain-images · services · dev-environments              |
 | Django               | `references/django/`  | _planned_                                                   |
 | Flask                | `references/flask/`   | _planned_                                                   |
 | FastAPI              | `references/fastapi/` | _planned_                                                   |
@@ -42,4 +43,4 @@ cap change** — that's the point.
 - It is **not** an orchestrator — building a feature end-to-end is **`task-flow`**.
 - The **web stack has no folder** here: it's the implicit default baked into the whole pack.
   A stack earns a folder only when it's genuinely outside that default (embedded, native
-  mobile, a non-JS backend…).
+  mobile, a non-JS backend, the container runtime the default never needs…).
