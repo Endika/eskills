@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.14.1](https://github.com/Endika/eskills/compare/v0.14.0...v0.14.1) (2026-09-14)
+
+
+### Bug Fixes
+
+* **comms:** catch --flag=value and --body-file text in the prose hook ([a483a15](https://github.com/Endika/eskills/commit/a483a1506266052586d8615d871ee1c26303b002))
+
 ## [0.14.0](https://github.com/Endika/eskills/compare/v0.13.0...v0.14.0) (2026-09-14)
 
 
