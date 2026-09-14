@@ -11,6 +11,7 @@ python3 is already required by `make check`, so this adds no new dependency.
 """
 
 import json
+import pathlib
 import re
 import sys
 
@@ -33,12 +34,22 @@ TELLS = [
                                      r"|\bFeel free to reach out\b"),
 ]
 
-# Where human text lives in the commands worth checking.
+# Where human text lives in the commands worth checking. Both separators matter:
+# `-m "text"` and `--message="text"` are equally valid git/gh, and only quoted values are
+# scanned because prose needs spaces and spaces need quotes.
 TEXT_FLAGS = re.compile(
-    r"""(?:-m|--message|-b|--body|-t|--title|--notes)\s+
+    r"""(?:--message|--body|--title|--notes|-m|-b|-t)
+        (?:\s*=\s*|\s+)
         (?:"((?:[^"\\]|\\.)*)"|'([^']*)')""",
     re.X,
 )
+
+# `gh pr create --body-file notes.md` / `git commit -F msg.txt` keep the prose in a file.
+TEXT_FILE_FLAGS = re.compile(
+    r"""(?:--body-file|--file|-F)(?:\s*=\s*|\s+)("[^"]+"|'[^']+'|\S+)""",
+    re.X,
+)
+MAX_FILE_BYTES = 64 * 1024
 RELEVANT = re.compile(r"\b(?:git\s+commit|gh\s+(?:pr|issue|release)\s+(?:create|edit|comment))\b")
 
 
@@ -52,7 +63,16 @@ def main() -> int:
     if not RELEVANT.search(command):
         return 0
 
-    text = " ".join(m.group(1) or m.group(2) or "" for m in TEXT_FLAGS.finditer(command))
+    parts = [m.group(1) or m.group(2) or "" for m in TEXT_FLAGS.finditer(command)]
+
+    for match in TEXT_FILE_FLAGS.finditer(command):
+        path = match.group(1).strip("\"'")
+        try:
+            parts.append(pathlib.Path(path).read_text(errors="replace")[:MAX_FILE_BYTES])
+        except OSError:
+            pass  # unreadable or not yet written — never the hook's problem
+
+    text = " ".join(parts)
     if not text.strip():
         return 0
 

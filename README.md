@@ -170,7 +170,7 @@ Two, both shipped with the plugin:
 - **`PreToolUse`** on `git *` and `gh *` — matches commit, PR, issue and release text
   against the high-precision half of `comms/references/ai-tells.md` and **warns without
   blocking**. Single padding words are deliberately not matched: measured against this
-  repo's own history it fires on 0 of 83 real commits, which is the point — a hook that
+  repo's own history it fires on 0 of 89 real commits, which is the point — a hook that
   cries wolf is a hook you turn off.
 
 ## Development
