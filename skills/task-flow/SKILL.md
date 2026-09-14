@@ -22,12 +22,15 @@ keystone is an adversarial verifier that re-earns "done" in fresh context.
 1. **`eskills:spec-intake`** — normalize the task into objective, acceptance criteria,
    constraints, definition of done. It also classifies **greenfield vs brownfield** and
    flags a **hard-tech challenge** (complex algorithm / performance bottleneck).
-2. **If brownfield →** `feature-dev:code-explorer` to understand the existing code before
-   planning.
+2. **If brownfield →** dispatch the **`code-explorer` agent** (Agent tool, from the
+   optional `feature-dev` plugin) to trace the existing code before planning. It ships
+   **agents, not skills** — there is nothing to invoke with the Skill tool. Without the
+   plugin, use the built-in `Explore` agent; either way the step is not optional, only the
+   tool is.
 3. **If hard-tech challenge → SPIKE sub-phase:** explore 2–3 approaches, benchmark
    candidates if needed (apply `eskills:perf-bar`), and pick the approach **before**
-   committing the plan. Use `deep-research` (if available) / `feature-dev:code-architect`
-   as needed.
+   committing the plan. The **`code-architect` agent** (same plugin, same caveat) and
+   `deep-research` are useful here when present; neither is required.
 4. **`superpowers:brainstorming`** — refine intent and trade-offs.
 5. **`superpowers:writing-plans`** — produce the plan, enriched with the template below.
 6. Emit the **PLAN + acceptance criteria + subagent design + chosen-approach rationale**.
