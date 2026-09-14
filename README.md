@@ -45,19 +45,19 @@ Invoked as `eskills:<name>`.
 
 ### Core
 
-| Skill            | Use when                                                                                                                                                                                                        |
-| ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `standards`      | About to commit, write/design tests, name identifiers, write user-facing copy, choose an ID type, or push — enforces my conventions floor (commits, tests, repo hygiene, inclusive language, IDs).              |
-| `task-flow`      | Implementing a feature end-to-end — orchestrates spec → plan → per-task implement/verify/review over superpowers, with a single human gate plus a human-pulled respec gate to correct the spec mid-build.       |
-| `spec-intake`    | Turning a task (Jira/Linear/URL/free text) into a normalized spec before planning.                                                                                                                              |
-| `gen-uml`        | Generating a Mermaid diagram (architecture/flow/sequence) from existing code.                                                                                                                                   |
-| `postmortem`     | After an important bug/failure — capture, root cause, fix, lesson as an archivable doc.                                                                                                                         |
-| `stack-gotchas`  | Hitting a known failure in my stack — release-please, Pages, gh/Dependabot, Supabase, Flipper, WSL, a remote box — a symptom index over per-family recipes in `references/`.                                    |
-| `context-budget` | Context feels heavy / added skills, MCP, or memory — audits whole-setup token consumption with a prioritized trim list.                                                                                         |
-| `exploit-hunt`   | Hunting actually-exploitable vulnerabilities (SSRF, SQLi, command injection, RCE, path traversal, XSS) — offensive counterpart to `security-bar`, on-demand, not a per-task lens.                               |
-| `stacks`         | Working in a non-default stack (Flipper FAP/C and Docker/Compose now; Django/Flask/FastAPI coming) — per-stack architecture/build/test/release conventions under `references/<stack>/`. One skill, many stacks. |
-| `gdpr`           | Building/shipping/auditing a B2C app for GDPR/privacy — data-posture classifier, decision gates, lawful basis/minimization/retention/DSR, processors & transfers, privacy notice, cookieless analytics.         |
-| `comms`          | Writing text that leaves the machine with a person on the other end — email, an issue/comment on a repo I don't own, a maintainer follow-up, release notes, a review-bot reply. Drafts only; sending is mine.   |
+| Skill            | Use when                                                                                                                                                                                                                          |
+| ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `standards`      | About to commit, write/design tests, name identifiers, write user-facing copy, choose an ID type, or push — enforces my conventions floor (commits, tests, repo hygiene, inclusive language, IDs).                                |
+| `task-flow`      | Implementing a feature end-to-end — orchestrates spec → plan → per-task implement/verify/review over superpowers, with a single human gate plus a human-pulled respec gate to correct the spec mid-build.                         |
+| `spec-intake`    | Turning a task (Jira/Linear/URL/free text) into a normalized spec before planning.                                                                                                                                                |
+| `gen-uml`        | Generating a Mermaid diagram (architecture/flow/sequence) from existing code.                                                                                                                                                     |
+| `postmortem`     | After an important bug/failure — capture, root cause, fix, lesson as an archivable doc.                                                                                                                                           |
+| `stack-gotchas`  | Hitting a known failure in my stack — release-please, Pages, gh/Dependabot, Supabase, Flipper, WSL, a remote box — a symptom index over per-family recipes in `references/`.                                                      |
+| `context-budget` | Context feels heavy / added skills, MCP, or memory — audits whole-setup token consumption with a prioritized trim list.                                                                                                           |
+| `exploit-hunt`   | Hunting actually-exploitable vulnerabilities (SSRF, SQLi, command injection, RCE, path traversal, XSS) — offensive counterpart to `security-bar`, on-demand, not a per-task lens.                                                 |
+| `stacks`         | Working in a non-default stack (Flipper FAP/C, Docker/Compose and PyTorch training now; Django/Flask/FastAPI coming) — per-stack architecture/build/test/release conventions under `references/<stack>/`. One skill, many stacks. |
+| `gdpr`           | Building/shipping/auditing a B2C app for GDPR/privacy — data-posture classifier, decision gates, lawful basis/minimization/retention/DSR, processors & transfers, privacy notice, cookieless analytics.                           |
+| `comms`          | Writing text that leaves the machine with a person on the other end — email, an issue/comment on a repo I don't own, a maintainer follow-up, release notes, a review-bot reply. Drafts only; sending is mine.                     |
 
 ### Quality lenses
 
