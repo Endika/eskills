@@ -57,7 +57,9 @@ One canonical owner per rule — this one links, it doesn't copy.
   trailing "-ing" clauses that analyse nothing, attribution to nobody ("experts argue"),
   inflated significance ("a testament to"), and closing pleasantries about the act of
   writing. The full watchlist, and the parts of it that don't apply to my voice, are in
-  `references/ai-tells.md`.
+  `references/ai-tells.md`. A `PreToolUse` hook re-checks the high-precision half of that
+  list on every `git commit` / `gh` command and **warns without blocking** — it is a net,
+  not a gate, and it stays silent on the words that carry real meaning in a real sentence.
 
 ## Before it goes out
 
