@@ -45,3 +45,12 @@ found for this workflow run. Artifact count is 2.` A third dead end for the same
   is purely a stale `package.json` version — not a failed deploy. Verify with
   `curl -s <url> | grep -oE 'index-[A-Za-z0-9_-]+\.js'` against a fresh build of the
   **pulled** default branch.
+
+## Pages won't enable on a brand-new repo
+
+- **Symptom:** the deploy workflow fails because Pages isn't enabled, and the workflow's
+  own `enablement: true` doesn't help.
+- **Means:** enabling Pages is an account-level action; the `GITHUB_TOKEN` inside the
+  workflow can't perform it.
+- **Fix:** enable it once from outside the workflow with a user token:
+  `gh api -X POST repos/<owner>/<repo>/pages -f build_type=workflow`.

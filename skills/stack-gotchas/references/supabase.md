@@ -28,3 +28,11 @@
   rejecting writes whose version < stored (→ HTTP 426 → "please update" prompt); flip the
   PWA to `autoUpdate`. **Operational rule: bump `SCHEMA_VERSION` whenever the snapshot shape
   changes**, or the guard won't protect the new field.
+
+## The Supabase MCP can't apply DDL
+
+- **Symptom:** schema changes through the MCP server don't take; only reads work.
+- **Means:** that surface is read-oriented; DDL isn't part of what it will execute.
+- **Fix:** send DDL to the Management API —
+  `POST /v1/projects/{ref}/database/query` with the PAT. Related: under WSL the MCP's OAuth
+  never closes its callback, so it needs a stdio wrapper with a PAT on disk instead.
