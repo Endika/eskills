@@ -35,3 +35,21 @@
 - **Fix:** `docker context ls` (and `docker context show`) before concluding anything was
   lost; build and run through the same engine. See
   `stacks/references/docker/toolchain-images.md`.
+
+## The WSL disk never shrinks
+
+- **Symptom:** freeing tens of gigabytes inside WSL leaves the `.vhdx` exactly as large as
+  before; `fstrim` returns nothing.
+- **Means:** the disk is in sparse mode, and sparse mode disables the compaction path —
+  `diskpart` refuses to work on it.
+- **Fix:** `wsl --manage <distro> --set-sparse false`, then compact with
+  `diskpart`'s `compact vdisk`. Order matters; without the first step the second is a no-op.
+
+## `reg.exe` output decoded from WSL comes out mangled
+
+- **Symptom:** a loop reading the Windows registry from WSL breaks halfway, leaving the
+  registry partially written.
+- **Means:** `reg.exe` emits **cp850**, not UTF-8. Decoding as UTF-8 throws mid-iteration,
+  after some writes have already happened.
+- **Fix:** decode as cp850 explicitly, and make the loop safe to re-run — a half-applied
+  registry change is the failure mode to design against.

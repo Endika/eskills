@@ -46,3 +46,12 @@ permitted to create or approve pull requests.` The CI workflow is fine; only rel
   Do this right after `gh repo create` for any new FAP / sister app — it's a one-time
   per-repo setting, not a code or token problem. (Distinct from the secondary rate-limit
   and auto-merge-loop failures above.)
+
+## `uv.lock` keeps the previous version of the project itself
+
+- **Symptom:** after a release, `uv.lock` still pins the project at the version it had
+  before the bump.
+- **Means:** release-please bumps `pyproject.toml` and the changelog, but nothing re-locks.
+  The lockfile's entry for the project is stale from that moment on.
+- **Fix:** run `uv lock` as part of the release PR, or accept the drift knowingly. It does
+  not break an install, so it goes unnoticed for several releases.
