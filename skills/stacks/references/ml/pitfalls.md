@@ -26,3 +26,9 @@ rollouts, on-call runbooks) are not in this list on purpose.
   before the model does. Profile the step before optimizing the architecture.
 - **Rollback by retraining.** Keeping the previous exported model means a bad result is one
   file swap away from undone, instead of a training run away.
+
+## Origin
+
+Selected from the anti-patterns in ECC `skills/mle-workflow`, keeping only what is a live
+risk in a solo, train-here-serve-elsewhere project. The parity check, the threshold sweeps
+and the padding cost are local, not from the source.

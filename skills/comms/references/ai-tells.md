@@ -1,9 +1,7 @@
 # Tells of generated prose
 
-The watchlist behind the "don't sound generated" rule in `comms`. Distilled from
-Wikipedia's [Signs of AI writing](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing)
-(WikiProject AI Cleanup), keeping what applies to email, issues, comments, release notes
-and PR bodies, and dropping what is specific to editing an encyclopedia.
+The watchlist behind the "don't sound generated" rule in `comms`, covering email, issues,
+comments, release notes and PR bodies.
 
 **The goal is not evading a detector.** Automated detection is unreliable and human
 readers do barely better than chance, so writing to beat a classifier buys nothing. The
@@ -80,3 +78,11 @@ does this add that a plain verb wouldn't?"
 Read it back and ask what a reader would learn that they didn't know. If a paragraph
 survives being deleted, it was padding — and padding is what the entire list above is
 made of.
+
+## Origin
+
+Distilled from Wikipedia's
+[Signs of AI writing](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing)
+(WikiProject AI Cleanup, CC BY-SA), dropping what is specific to editing an encyclopedia —
+wikitext, DOIs, categories, citation templates. The section on what does not apply to my
+voice is mine, not theirs.
