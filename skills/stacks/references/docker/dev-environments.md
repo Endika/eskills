@@ -54,3 +54,10 @@ it is the difference between a container escape landing on a user and landing on
 Mirror `.gitignore` and then some: `node_modules`, `dist`, `.git`, `.env*`. It is a build
 speed lever (less context shipped to the daemon) and a leak guard (`.env` cannot be copied
 into a layer it never reached).
+
+## Origin
+
+Multi-stage Dockerfile and the compose-for-development conventions adapted from ECC
+`skills/docker-patterns`, narrowed to the case where a project genuinely needs a container.
+The `server.host: true` note and the judgement that none of the web apps here need any of
+this are local.

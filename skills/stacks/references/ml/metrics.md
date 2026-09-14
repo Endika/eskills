@@ -45,3 +45,9 @@ Report the metric per slice you care about — word-level vs continuous signing,
 per hand — before the aggregate. The known tradeoff on this project (vocabulary size
 against continuous-signing accuracy) is invisible in the headline number and obvious one
 slice down.
+
+## Origin
+
+Metric-and-mistake economics adapted from ECC `skills/mle-workflow`, with its serving,
+rollout and team lanes dropped. The seed rule and every file-level fact are from this
+project, not from the source.

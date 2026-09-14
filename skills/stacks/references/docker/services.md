@@ -62,3 +62,10 @@ wider door than the use case asks for.
 
 Runtime environment or `env_file`, never baked into a layer — layers are distributable and
 `docker history` reads them back. Keep the `.env` out of git.
+
+## Origin
+
+The hardening set (pinned tags, `no-new-privileges`, `cap_drop`, secrets kept out of image
+layers) is adapted from ECC `skills/docker-patterns`. The live example is not: every claim
+about the `anisette` container, and every gap named as still open, was read off the
+container running on this machine.
