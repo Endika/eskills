@@ -29,8 +29,8 @@ keystone is an adversarial verifier that re-earns "done" in fresh context.
    tool is.
 3. **If hard-tech challenge → SPIKE sub-phase:** explore 2–3 approaches, benchmark
    candidates if needed (apply `eskills:perf-bar`), and pick the approach **before**
-   committing the plan. The **`code-architect` agent** (same plugin, same caveat) and
-   `deep-research` are useful here when present; neither is required.
+   committing the plan. The **`code-architect` agent** (same plugin, same caveat) helps
+   here when present; it is not required.
 4. **`superpowers:brainstorming`** — refine intent and trade-offs.
 5. **`superpowers:writing-plans`** — produce the plan, enriched with the template below.
 6. Emit the **PLAN + acceptance criteria + subagent design + chosen-approach rationale**.
