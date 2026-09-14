@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.14.0](https://github.com/Endika/eskills/compare/v0.13.0...v0.14.0) (2026-09-14)
+
+
+### Features
+
+* **stacks:** add the PyTorch training reference mined from ECC mle-workflow ([440e91c](https://github.com/Endika/eskills/commit/440e91cf828e625c89ef3238977b8297c261a762))
+
 ## [0.13.0](https://github.com/Endika/eskills/compare/v0.12.2...v0.13.0) (2026-09-14)
 
 
