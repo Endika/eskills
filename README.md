@@ -154,6 +154,10 @@ One rule shapes the whole repo:
 So `superpowers` is referenced (invoked by name); a few small patterns are adapted and
 rewritten. ECC is never installed — it was mined for ideas only.
 
+Adapted material carries its provenance where it landed: an `origin:` line in a skill's
+frontmatter, or an **Origin** section at the foot of a reference file, saying what the
+source was and what had to be rewritten for this stack. If it isn't marked, it's mine.
+
 ## Development
 
 ```bash
