@@ -32,7 +32,7 @@ once, then proceed (don't rehash).
 - **Body — clear and simple to read, by sections** (the structure lives here, not in a repo template file): **What & why** (1-2 sentences) → **Changes** (short bullets) → **Testing** (commands run + result) → **Notes** (risks / screenshots / follow-ups). **Drop any section that doesn't apply** — scannable, no filler, no checklist boilerplate.
 - **No trailers, no footer:** never a `🤖 Generated with Claude Code` footer and never `Co-Authored-By:` — same rule as commits.
 - Link the issue with `Closes #N` when there is one.
-- **No canned assurance prose** — "ensured all tests pass", "followed the existing conventions", "preserved the original behaviour". It reads as generated because it is padding: say what changed. Watchlist in `eskills:comms` → `references/ai-tells.md`.
+- **No canned assurance prose** — "ensured all tests pass", "followed the existing conventions", "preserved the original behaviour". It reads as generated because it is padding: say what changed. Watchlist in `comms/references/ai-tells.md`.
 
 ## Tests
 
