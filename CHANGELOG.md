@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.13.0](https://github.com/Endika/eskills/compare/v0.12.2...v0.13.0) (2026-09-14)
+
+
+### Features
+
+* **comms:** warn on generated-prose tells in commit and gh text via a PreToolUse hook ([f9258dd](https://github.com/Endika/eskills/commit/f9258ddac9a8fda831e7e3dd8ac2cbad958b6269))
+
 ## [0.12.2](https://github.com/Endika/eskills/compare/v0.12.1...v0.12.2) (2026-09-14)
 
 
