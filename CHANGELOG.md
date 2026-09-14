@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.12.0](https://github.com/Endika/eskills/compare/v0.11.0...v0.12.0) (2026-09-14)
+
+
+### Features
+
+* **stack-gotchas:** add gh CLI, Dependabot, remote-ops and WSL disk recipes ([7e23e16](https://github.com/Endika/eskills/commit/7e23e1657bd47c7d826eac2770097cacaeae3e86))
+
 ## [0.11.0](https://github.com/Endika/eskills/compare/v0.10.0...v0.11.0) (2026-09-14)
 
 
