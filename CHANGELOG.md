@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.12.1](https://github.com/Endika/eskills/compare/v0.12.0...v0.12.1) (2026-09-14)
+
+
+### Bug Fixes
+
+* **task-flow:** feature-dev ships agents, not skills — name the agent and the fallback ([71fdd9b](https://github.com/Endika/eskills/commit/71fdd9b4b67320503245f2c8ce46c59a90ca39f4))
+
 ## [0.12.0](https://github.com/Endika/eskills/compare/v0.11.0...v0.12.0) (2026-09-14)
 
 
