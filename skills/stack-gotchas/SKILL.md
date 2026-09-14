@@ -1,6 +1,6 @@
 ---
 name: stack-gotchas
-description: Use when hitting a known failure in my stack — release-please rate-limit or auto-merge loop, GitHub Pages env branch-policy or a deploy queue jammed by cancel-in-progress, Supabase egress/RLS/stale-client-blob, a Flipper FAP release/build/version-triad failure or a FAP whose UI won't refresh when launched from favourites/quick-buttons, or verifying mobile/responsive rendering in WSL — for a direct diagnose-and-recover recipe.
+description: Use when hitting a known failure in my stack — release-please rate-limit or auto-merge loop, GitHub Pages env branch-policy or a deploy queue jammed by cancel-in-progress, Supabase egress/RLS/stale-client-blob, a Flipper FAP release/build/version-triad failure or a FAP whose UI won't refresh when launched from favourites/quick-buttons, verifying mobile/responsive rendering in WSL, or a Docker engine/context mix-up under WSL — for a direct diagnose-and-recover recipe.
 ---
 
 # stack-gotchas
@@ -126,6 +126,18 @@ found for this workflow run. Artifact count is 2.` A third dead end for the same
 - **Before re-debugging a "still broken" UI report:** confirm the user isn't on a **stale
   deploy or cached PWA** (check the live tag + that `autoUpdate` activated). Much of this
   class of confusion is version lag, not a bug.
+
+## Docker on WSL: images or containers that "disappeared"
+
+- **Symptom:** `docker images` / `docker ps` in WSL doesn't list what Docker Desktop shows
+  (or the reverse) — an image you just built is invisible, a container you know is up isn't
+  there.
+- **Means:** two different daemons. The native engine inside WSL keeps its own
+  `/var/lib/docker` store; Docker Desktop keeps another inside its VM. The CLI answers for
+  whichever the current context points at, and neither can see the other's images.
+- **Fix:** `docker context ls` (and `docker context show`) before concluding anything was
+  lost; build and run through the same engine. See
+  `stacks/references/docker/toolchain-images.md`.
 
 ## Supabase: egress blown (not DB size)
 
