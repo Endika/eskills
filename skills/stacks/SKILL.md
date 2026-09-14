@@ -1,6 +1,6 @@
 ---
 name: stacks
-description: Use when building or maintaining a project in one of my non-default stacks — Flipper Zero FAP in C and Docker / Compose now, Django / Flask / FastAPI coming — for its architecture, build, test, formatting, containerization and release conventions. Routes to references/<stack>/. The web stack (TS / Supabase / PWA) is the pack's implicit default and has no entry here.
+description: Use when building or maintaining a project in one of my non-default stacks — Flipper Zero FAP in C, Docker / Compose, and the Python / PyTorch training side of a model that ships elsewhere, now; Django / Flask / FastAPI coming — for its architecture, build, test, formatting, containerization, iteration and release conventions. Routes to references/<stack>/. The web stack (TS / Supabase / PWA) is the pack's implicit default and has no entry here.
 ---
 
 # stacks
@@ -24,13 +24,14 @@ breadth grows without adding skills or spending a trigger per stack.
 `references/<stack>/` holds the concrete, copy-ready conventions for that stack, each
 pattern traced to a real repo. Read the folder for the stack you're in.
 
-| Stack                | Folder                | Status                                                      |
-| -------------------- | --------------------- | ----------------------------------------------------------- |
-| Flipper Zero FAP (C) | `references/flipper/` | architecture · build-and-test · formatting · release-please |
-| Docker / Compose     | `references/docker/`  | toolchain-images · services · dev-environments              |
-| Django               | `references/django/`  | _planned_                                                   |
-| Flask                | `references/flask/`   | _planned_                                                   |
-| FastAPI              | `references/fastapi/` | _planned_                                                   |
+| Stack                 | Folder                | Status                                                      |
+| --------------------- | --------------------- | ----------------------------------------------------------- |
+| Flipper Zero FAP (C)  | `references/flipper/` | architecture · build-and-test · formatting · release-please |
+| Docker / Compose      | `references/docker/`  | toolchain-images · services · dev-environments              |
+| ML training (PyTorch) | `references/ml/`      | iteration-loop · metrics · pitfalls                         |
+| Django                | `references/django/`  | _planned_                                                   |
+| Flask                 | `references/flask/`   | _planned_                                                   |
+| FastAPI               | `references/fastapi/` | _planned_                                                   |
 
 Adding a stack = a new `references/<stack>/` folder (and a row above). **No new skill, no
 cap change** — that's the point.
