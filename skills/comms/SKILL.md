@@ -48,6 +48,13 @@ One canonical owner per rule — this one links, it doesn't copy.
   in Spanish, Euskara, Galician or Catalan gets an answer in that language.
 - **Guest register upstream.** In a repo I don't own: describe the problem, offer the fix,
   accept the maintainer's call. No process lectures, no deadlines, no "any update on this?".
+- **The last line carries information.** A message ends on its ask or on its last fact. If I
+  want something, the closing sentence names it; if I don't, the message stops on the final
+  piece of information, and "no need to reply" is the only closing line that earns its place.
+  An offer with no object — "let me know if there's anything else", "happy to check whatever
+  you need" — is a placeholder where the ending goes, and upstream it reads as asking
+  permission to exist. Offering a specific fix names its object and is an ask, not a
+  placeholder.
 - **No AI footers or trailers anywhere** — same rule as commits, and it extends to emails,
   issues and comments.
 - **Length is a courtesy.** Lead with the point. If it needs scrolling, it needs cutting or
