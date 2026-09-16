@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.16.0](https://github.com/Endika/eskills/compare/v0.15.0...v0.16.0) (2026-09-16)
+
+
+### Features
+
+* **ci:** add CodeQL static analysis ([e6cd87e](https://github.com/Endika/eskills/commit/e6cd87e856dc691a115ec4d2c4f5dbbe98c24746))
+
 ## [0.15.0](https://github.com/Endika/eskills/compare/v0.14.1...v0.15.0) (2026-09-16)
 
 
