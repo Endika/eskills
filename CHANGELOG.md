@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.15.0](https://github.com/Endika/eskills/compare/v0.14.1...v0.15.0) (2026-09-16)
+
+
+### Features
+
+* **comms:** require the last line to carry an ask or a fact ([e03c105](https://github.com/Endika/eskills/commit/e03c105fbe2078b77781782b5cfc109aa2af1e3f))
+
 ## [0.14.1](https://github.com/Endika/eskills/compare/v0.14.0...v0.14.1) (2026-09-14)
 
 
