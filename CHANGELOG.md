@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.17.0](https://github.com/Endika/eskills/compare/v0.16.0...v0.17.0) (2026-09-24)
+
+
+### Features
+
+* **standards:** warn on generated-code tells in the staged diff ([abb1b0e](https://github.com/Endika/eskills/commit/abb1b0e2612a806b8489ecf5d3687d4d1f8d8d72))
+
 ## [0.16.0](https://github.com/Endika/eskills/compare/v0.15.0...v0.16.0) (2026-09-16)
 
 
