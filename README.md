@@ -163,7 +163,7 @@ source was and what had to be rewritten for this stack. If it isn't marked, it's
 
 ## Hooks
 
-Two, both shipped with the plugin:
+Three, all shipped with the plugin:
 
 - **`SessionStart`** — injects the precedence rule (this pack overrides `superpowers`) and
   the notes-directory convention.
@@ -172,6 +172,11 @@ Two, both shipped with the plugin:
   blocking**. Single padding words are deliberately not matched: measured against this
   repo's own history it fires on 0 of 89 real commits, which is the point — a hook that
   cries wolf is a hook you turn off.
+- **`PreToolUse`** on `git commit` — scans the lines the commit adds (Markdown and plain
+  text excluded) against the mechanical half of `standards/references/code-tells.md`:
+  comments addressed to the reader, leftover placeholders, step banners, emoji in log
+  calls, bare `except: pass`. Also **warns without blocking**. Measured before shipping: 0
+  of 1,301 commits across my repos, 3 of 1,800 across five third-party ones.
 
 ## Development
 
