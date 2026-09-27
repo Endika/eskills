@@ -10,6 +10,23 @@
 - **Fix:** set all three. If only some are present, the bump merging is worse than it not
   merging, because it looks verified and isn't.
 
+## An auto-merge workflow would merge a stranger's pull request
+
+- **Symptom:** none until it's too late. The auto-merge workflow runs on
+  `pull_request_target` with the PAT and gates on `github.actor == 'dependabot[bot]'`, or on
+  the head ref starting with `release-please--`.
+- **Means:** anyone can open a PR from a fork on a branch named `release-please--x`, and the
+  job queues it for auto-merge with your PAT. It lands on `main` as soon as the required
+  check passes. `github.actor` is only whoever fired the latest event, the known Dependabot
+  confused deputy. The one thing holding it back is that GitHub waits for your approval
+  before running CI for a first-time fork contributor.
+- **Fix:** gate every job on a same-repo head,
+  `github.event.pull_request.head.repo.full_name == github.repository`, and on the PR author
+  instead of the actor. For Dependabot that's `user.login == 'dependabot[bot]'`. For
+  release-please it's `user.login == github.repository_owner`, since it opens its PRs with
+  the owner's PAT: check who opens them before shipping, or the release PR never merges
+  again. When a new repo copies the workflow, copy the guarded one.
+
 ## A red Dependabot check with nothing to fix
 
 - **Symptom:** the security job fails, but the advisory has no action left in it.
