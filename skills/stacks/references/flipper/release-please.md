@@ -64,7 +64,7 @@ generator like trivia):
 ```yaml
 - uses: googleapis/release-please-action@v5
 # on a published release:
-- uses: flipperdevices/flipperzero-ufbt-action@v0.1 # build the .fap
+- uses: flipperdevices/flipperzero-ufbt-action@v0.1.4 # build the .fap
 - name: Upload FAP to release
   run: gh release upload ... # attach the .fap artifact
 ```

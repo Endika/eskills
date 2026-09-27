@@ -1,6 +1,6 @@
 # Long-lived services — the ones that must survive a reboot
 
-A container that stays up (the `anisette` provisioning server here, anything self-hosted
+A container that stays up (the `anisette` provisioning server below, anything self-hosted
 elsewhere) is infrastructure, not a command. It is judged on whether it comes back after a
 reboot with its data intact, and on how much it could do if it were compromised.
 
