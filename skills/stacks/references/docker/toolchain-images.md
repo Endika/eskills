@@ -14,9 +14,9 @@ docker run --rm \
   local/flipper-ci:1 make linter
 ```
 
-Four things, each earning its place:
+Four things, and why each is there:
 
-- **`--rm`** — the container is a process, not a machine. Nothing to clean up later.
+- **`--rm`** — the container is removed when it exits, so there's nothing to clean up later.
 - **`-v "$PWD:/src"` + `-w /src`** — the source stays on the host; only the toolchain is
   in the image.
 - **`-u "$(id -u):$(id -g)"`** — **the one that bites if you skip it.** Without it the

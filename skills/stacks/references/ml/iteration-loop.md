@@ -45,7 +45,7 @@ Tradeoff accepted:
 Regression added:
 ```
 
-**"Tradeoff accepted" and "slice movement" are the two lines that earn the whole ledger.**
+**"Tradeoff accepted" and "slice movement" are the two lines the whole ledger exists for.**
 A change that improves the headline number while quietly costing a slice is the normal
 case, not the exception — and without those lines it gets remembered as a clean win.
 

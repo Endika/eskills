@@ -14,7 +14,7 @@ typed it. The output is one archivable markdown file.
 ## When to use
 
 - A production failure, data issue, broken release, or a bug that cost real time.
-- NOT every small hiccup — a typo fixed in 30 seconds doesn't earn a postmortem.
+- NOT every small hiccup — a typo fixed in 30 seconds doesn't need a postmortem.
 
 ## Steps
 

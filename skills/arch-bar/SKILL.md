@@ -8,12 +8,12 @@ description: Use when judging whether a design's architecture fits its scale —
 ## Overview
 
 My architecture bar: **the right structure for the problem, no premature complexity.**
-Scale-agnostic — it judges fit, not fashion. Usable standalone on a design, and invoked by
+Scale-agnostic — it judges fit to the problem. Usable standalone on a design, and invoked by
 the quality stage of `eskills:task-flow`. It deliberately looks **both** ways: complexity
-that isn't earned, and simplicity that's about to hit a wall. Unlike the other lenses, this
+the problem doesn't need yet, and simplicity that's about to hit a wall. Unlike the other lenses, this
 one is standalone — it delegates to no upstream engine; the rubric below is the whole tool.
 
-## Over-engineering — complexity that isn't earned
+## Over-engineering — complexity the problem doesn't need
 
 - Microservices, queues, event sourcing, or a plugin system for a tiny single-user tool.
 - Abstractions with one implementation; layers that only forward calls.

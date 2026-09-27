@@ -10,7 +10,7 @@ description: Use when implementing a feature or multi-step task end-to-end — o
 My end-to-end flow for building a feature with trust. It is a **thin orchestrator** over
 `superpowers` — it sequences existing skills, it does not re-implement them. One human
 gate (after the plan); everything else runs automatically with per-task gates. The
-keystone is an adversarial verifier that re-earns "done" in fresh context.
+keystone is an adversarial verifier that re-checks "done" in fresh context.
 
 ## When to use
 
