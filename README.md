@@ -36,7 +36,7 @@ same `version` until release-please bumps it.
 **Dev (load HEAD directly):**
 
 ```bash
-claude --plugin-dir ~/eskills      # or: make dev
+claude --plugin-dir path/to/eskills   # or, from the clone: make dev
 ```
 
 ## Skills

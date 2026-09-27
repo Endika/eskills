@@ -1,8 +1,8 @@
 # Toolchain images — a container as a pinned tool, not a home
 
-The dominant use here: a compiler, formatter or linter I don't want installed on the host,
-frozen at a known version. `local/flipper-ci`, `clangfmt`, `cppcheck213`, `cc213`,
-`cctools`, `golang` all exist for this. The container is disposable; the repo on the host
+The dominant use: a compiler, formatter or linter I don't want installed on the host,
+frozen at a known version — `local/flipper-ci`, `clangfmt`, `cppcheck213`, `cc213`,
+`cctools`, `golang` are all this kind. The container is disposable; the repo on the host
 is the only thing that persists.
 
 ## The shape of the call
@@ -24,8 +24,7 @@ Four things, each earning its place:
   formatter rewriting in place) comes back owned by root. You then need sudo to clean your
   own working tree, and a later non-root run fails on permissions instead of on merit.
 - **A pinned tag** — `:1`, `213`, a version, never `:latest`. The point of the image is
-  that the toolchain does not move under you; `:latest` throws that away. `clangfmt:latest`
-  and `cctools:latest` here are the ones still to fix.
+  that the toolchain does not move under you; `:latest` throws that away.
 
 ## Keep the image boring
 
