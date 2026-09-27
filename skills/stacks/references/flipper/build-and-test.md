@@ -13,7 +13,11 @@ firmware's `fbt` (or `ufbt` in CI).
 PROJECT_NAME = habit_flow
 FAP_APPID = flipper_habit_flow
 
-FLIPPER_FIRMWARE_PATH ?= /home/<YOUR_PATH>/flipperzero-firmware
+# Local override: create a gitignored `local.mk` with your real path, e.g.
+#   FLIPPER_FIRMWARE_PATH = /home/you/flipperzero-firmware
+# The committed default below is a placeholder on purpose — never commit a real path.
+-include local.mk
+FLIPPER_FIRMWARE_PATH ?= <Path>/flipperzero-firmware
 PWD = $(shell pwd)
 
 CC = gcc
@@ -53,7 +57,10 @@ clean:
 
 Notes:
 
-- `FLIPPER_FIRMWARE_PATH ?=` is overridable; CI sets it / uses the ufbt action instead.
+- The firmware path lives in a gitignored `local.mk` (add `local.mk` to `.gitignore`);
+  `-include` skips it silently when absent, and `?=` keeps the placeholder as the fallback.
+  The header comes from `flipper-gurpil`, `flipper-tutu` and `flipper-wifi-census`. CI
+  doesn't need it: it uses the ufbt action instead.
 - `fap` chains `prepare → clean_firmware → clean` so the build is reproducible.
 - trivia splits its many tests into separate `test_*` binaries and a `test:` aggregate
   target; same idea, more targets.
