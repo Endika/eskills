@@ -6,7 +6,7 @@ for detecting bugs, building features, testing, and shipping — and rides
 
 The goal is **trust**: when I follow one of these skills, the result is what I
 expect, with evidence — not a hopeful claim. This is the deliberate opposite of a
-maximalist catalog; every skill earns its place.
+maximalist catalog; every skill has to justify its place.
 
 ## Requires
 

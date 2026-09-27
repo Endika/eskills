@@ -43,5 +43,5 @@ cap change** — that's the point.
 - It does **not** hold failure recipes — those are in **`stack-gotchas`**.
 - It is **not** an orchestrator — building a feature end-to-end is **`task-flow`**.
 - The **web stack has no folder** here: it's the implicit default baked into the whole pack.
-  A stack earns a folder only when it's genuinely outside that default (embedded, native
+  A stack gets a folder only when it's genuinely outside that default (embedded, native
   mobile, a non-JS backend, the container runtime the default never needs…).

@@ -80,7 +80,7 @@ Measured on 2026-09-24 against real history, lines added per commit: **0 of 1,30
 across ten of my repos, and **3 of 1,800** across mypy, pact-python, go-jsonnet, kapacitor
 and Momentum firmware. Of those three, one is a bare `except:` that really does swallow an
 error, one is deliberate (mypy's crash reporter must not crash), and one labels the stages
-of a bit-slicing algorithm with `// Step N:` — a banner that earns its place. Two patterns
+of a bit-slicing algorithm with `// Step N:` — a banner worth keeping. Two patterns
 were narrowed to get there:
 
 - **Only bare `except:` or `except Exception:`** followed by `pass`.

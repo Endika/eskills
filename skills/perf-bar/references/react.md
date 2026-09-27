@@ -30,7 +30,7 @@ nobody can perceive is not a finding.
 - **Never define a component inside a component.** A new function identity each render is
   a new element type: React unmounts the subtree and loses its state.
 - **Don't memo primitives.** `useMemo(() => x + 1, [x])` costs more than it saves. `memo`
-  earns its place on object identity and genuinely expensive work.
+  is worth it for object identity and genuinely expensive work.
 - **Split hooks with independent inputs** so one source changing doesn't re-run the other.
 - **Interaction logic belongs in the event handler,** which runs on the action, not in an
   effect that re-runs on every dep change.

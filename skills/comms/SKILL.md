@@ -8,7 +8,7 @@ description: Use when writing text that leaves this machine with a person on the
 ## Overview
 
 My bar for outward text. The reader owes me nothing: not their attention, not a reply, not
-a merge. So the message earns its own way in — short, specific, honest about what is and
+a merge. So the message has to be worth opening — short, specific, honest about what is and
 isn't true — and then it stops. **Drafts are shown to me and sent by me.** This skill never
 posts, mails or comments on its own.
 
@@ -50,7 +50,7 @@ One canonical owner per rule — this one links, it doesn't copy.
   accept the maintainer's call. No process lectures, no deadlines, no "any update on this?".
 - **The last line carries information.** A message ends on its ask or on its last fact. If I
   want something, the closing sentence names it; if I don't, the message stops on the final
-  piece of information, and "no need to reply" is the only closing line that earns its place.
+  piece of information, and "no need to reply" is the only closing line worth keeping.
   An offer with no object — "let me know if there's anything else", "happy to check whatever
   you need" — is a placeholder where the ending goes, and upstream it reads as asking
   permission to exist. Offering a specific fix names its object and is an ask, not a

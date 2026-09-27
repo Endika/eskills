@@ -9,7 +9,7 @@ description: Use when assessing performance or algorithmic soundness — Big-O o
 
 My performance/algorithmic bar. Usable standalone on a diff, fed into the **SPIKE**
 sub-phase of `eskills:task-flow` (approach selection), and invoked by its per-task review.
-It earns its own lens because bottlenecks are a recurring core challenge. (This is the 4th
+It gets its own lens because bottlenecks are a recurring core challenge. (This is the 4th
 lens — the hard cap; a new lens must displace one.)
 
 ## Hot-path checklist
