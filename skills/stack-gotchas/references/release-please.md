@@ -50,8 +50,20 @@ permitted to create or approve pull requests.` The CI workflow is fine; only rel
 ## `uv.lock` keeps the previous version of the project itself
 
 - **Symptom:** after a release, `uv.lock` still pins the project at the version it had
-  before the bump.
+  before the bump, and `uv sync --locked` in CI starts failing.
 - **Means:** release-please bumps `pyproject.toml` and the changelog, but nothing re-locks.
-  The lockfile's entry for the project is stale from that moment on.
-- **Fix:** run `uv lock` as part of the release PR, or accept the drift knowingly. It does
-  not break an install, so it goes unnoticed for several releases.
+  `uv sync --frozen` hides it: it uses the lock as is and checks nothing.
+- **Fix:** add the lock to the release PR through `extra-files`, with a jsonpath over TOML:
+  `{ "type": "toml", "path": "uv.lock", "jsonpath": "$.package[?(@.name.value=='<name>')].version" }`.
+  Relocking by hand fixes the symptom and breaks again on the next release. Keep
+  `--locked`, never `--frozen`, on the quality job's `uv sync`.
+
+## The release PR sits with no CI until someone touches it
+
+- **Symptom:** release-please opens its PR, auto-merge is armed, and no check ever starts.
+  CI only runs once someone pushes to the branch or approves by hand.
+- **Means:** the action has no `token:`, so it opens the PR with `GITHUB_TOKEN`, and
+  GitHub never starts a workflow from an event that token caused.
+- **Fix:** `token: ${{ secrets.RELEASE_PLEASE_TOKEN }}` on the `release-please-action`
+  step. Grep every repo for a release-please step without it; one copied workflow is
+  enough to spread it.

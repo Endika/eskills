@@ -25,6 +25,7 @@ recipe.
 | A `gh` command dies on a GraphQL error, a 403 on a repo I don't own, or a poll loop that never ends | `references/github-cli.md`     |
 | A dependency bump merges without CI, won't install, can never go green, or a fork could auto-merge  | `references/dependencies.md`   |
 | A command on a remote box hangs with no output, or a process match kills the wrong thing            | `references/remote-ops.md`     |
+| A scheduled job can't fetch a source that answers fine from home                                    | `references/ci-network.md`     |
 
 ## What belongs here
 
