@@ -37,3 +37,20 @@
   loop recognizes, so the exit condition is never met.
 - **Fix:** stop the task by hand after merging (`TaskStop`), or bound the loop with
   `timeout` from the start. Don't start an unbounded poll you won't come back to.
+
+## A PR with auto-merge sits `BEHIND` forever
+
+- **Symptom:** checks green, auto-merge armed, and the PR never merges; `mergeStateStatus`
+  is `BEHIND`.
+- **Means:** branch protection has `strict: true`, so the branch must be up to date, and
+  auto-merge doesn't rebase for you when `main` moves.
+- **Fix:** for your own branch, `git rebase origin/main` and
+  `git push --force-with-lease`; for Dependabot, comment `@dependabot rebase`.
+
+## `gh pr checks --json` is an unknown flag
+
+- **Symptom:** a wait loop that filters failed checks never sees one, because the command
+  errors with `unknown flag: --json` and the error goes to `/dev/null`.
+- **Means:** this `gh` build's `pr checks` has no JSON output.
+- **Fix:** read `gh pr view <n> --json state,statusCheckRollup` and filter on
+  `conclusion`. Don't hide a poll's stderr until the command has been seen to work.

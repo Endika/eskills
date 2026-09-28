@@ -59,3 +59,23 @@
   changes that; the PR is unmergeable until upstream widens the peer.
 - **Fix:** hold the PR, or drop typescript-eslint. Repos already on Biome have no such cap
   and are on 7 already.
+
+## A major bump never shows up, or shows up bundled with minor ones
+
+- **Symptom:** an action or package sits several majors behind while the other repos moved,
+  or a grouped Dependabot PR carries a major inside it.
+- **Means:** an `ignore` of `version-update:semver-major` for `dependency-name: "*"` hides
+  every major forever. A group without `update-types`, security groups included, takes
+  majors too, so one lands next to minors in a single PR.
+- **Fix:** no blanket major ignore (a targeted one with a reason is fine). Give every group
+  `update-types: [minor, patch]`, so each major arrives as its own PR, and keep the
+  auto-merge step gated to `semver-patch`/`semver-minor` so majors wait for a human.
+
+## The auto-merge job fails with "Dependabot's commit signature is not verified"
+
+- **Symptom:** a red `auto-merge` check on a Dependabot PR that merges anyway.
+- **Means:** with `strict` branch protection the branch was rebased with the owner's PAT,
+  so the head commit is no longer signed by Dependabot and `fetch-metadata` refuses on the
+  `synchronize` event. Auto-merge was already armed when the PR opened.
+- **Fix:** nothing, if auto-merge is armed and the required checks are green; it's noise.
+  Check `autoMergeRequest` on the PR before chasing it.
