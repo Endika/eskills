@@ -38,6 +38,7 @@ POUR: Perceivable, Operable, Understandable, Robust. The checks that catch most 
 - **Keyboard:** every interactive element reachable and operable by keyboard, with a **visible focus indicator** (SC 2.4.11). No keyboard traps; logical focus order.
 - **Target size:** interactive targets **≥ 24×24 CSS px** (SC 2.5.8).
 - **Dynamic state:** announce async changes via `aria-live`/live regions; descriptive errors with how to fix (SC 3.3.3).
+- **Errors in the interface language:** never append an error's technical `message` after a translated prefix ("No se pudo guardar. Failed to save meeting"). Infrastructure returns a structured reason, the interface maps it to translated copy, and `message` stays for diagnostics only.
 - **Reflow:** usable up to 400% zoom without loss of content or function.
 
 ## Responsive & horizontal overflow
