@@ -28,7 +28,7 @@
      deployment ID **is the commit SHA**. Aborting cancels the deployment for that SHA, and
      the cancelled state is permanent, so every later attempt at the _same commit_ is
      rejected outright. Retrying can never work.
-  3. **Never press "Re-run".** The first attempt already uploaded the `github-pages`
+  3. **Never press "Re-run" on a jammed commit.** The first attempt already uploaded the `github-pages`
      artifact; the re-run uploads a second with the same name into the same run, and
      `deploy-pages` refuses with `Multiple artifacts named "github-pages" were unexpectedly
 found for this workflow run. Artifact count is 2.` A third dead end for the same commit.
@@ -45,6 +45,20 @@ found for this workflow run. Artifact count is 2.` A third dead end for the same
   is purely a stale `package.json` version — not a failed deploy. Verify with
   `curl -s <url> | grep -oE 'index-[A-Za-z0-9_-]+\.js'` against a fresh build of the
   **pulled** default branch.
+
+## A large Pages deploy times out at about 600 s, on and off
+
+- **Symptom:** the deploy step aborts with `Timeout reached, aborting!` after roughly
+  600–610 s. The next run of the same site gets through in 570–596 s. Status pages say
+  everything is operational and the branch policy is fine.
+- **Means:** `actions/deploy-pages` caps its `timeout` input at 600000 ms
+  (`Math.min(timeoutInput, MAX_TIMEOUT)`). A larger value is accepted, echoed in the log
+  and ignored. A big site (4.4 MB across 220 files) can take right about that long to
+  deploy, so each run is a coin flip.
+- **Fix:** re-run the failed run. In this failure mode a re-run creates a fresh Pages
+  deployment for the same SHA, so no new commit is needed. This is not the fast
+  `Deployment cancelled` rejection above, where only a new commit helps. Don't spend a
+  commit raising `timeout`; shrinking what gets published is the only lasting fix.
 
 ## Pages won't enable on a brand-new repo
 
