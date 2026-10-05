@@ -54,3 +54,19 @@
 - **Means:** this `gh` build's `pr checks` has no JSON output.
 - **Fix:** read `gh pr view <n> --json state,statusCheckRollup` and filter on
   `conclusion`. Don't hide a poll's stderr until the command has been seen to work.
+- **Related:** `gh pr checks --watch` launched right after opening a PR can exit at once with
+  every check still `pending`: the checks aren't registered yet, so there is nothing to
+  watch. Wait 20–30 s before watching, and re-read the checks before calling anything green.
+
+## The CI badge says failing while every PR is green
+
+- **Symptom:** the README badge (`.../workflow/status/<owner>/<repo>/ci.yml?branch=main`)
+  shows failing, yet the PRs' CI and the latest merges are all green.
+- **Means:** with `branch=main` the badge reads the newest run of that workflow on `main`.
+  If the workflow no longer runs on `push` to `main` (a trigger dropped to stop double
+  runs, then the caller that ran it on `main` was removed), the badge keeps showing an old
+  cancelled or failed run from months ago.
+- **Fix:** check the date of that run with
+  `gh api "repos/<owner>/<repo>/actions/workflows/ci.yml/runs?branch=main&per_page=1"`.
+  If it's stale, put `push: branches: [main]` back on the CI workflow. Don't switch the
+  badge to `event=pull_request`: it goes green while `main` still runs no CI.
