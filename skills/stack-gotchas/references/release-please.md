@@ -67,3 +67,14 @@ permitted to create or approve pull requests.` The CI workflow is fine; only rel
 - **Fix:** `token: ${{ secrets.RELEASE_PLEASE_TOKEN }}` on the `release-please-action`
   step. Grep every repo for a release-please step without it; one copied workflow is
   enough to spread it.
+
+## A `Release-As:` footer never reaches `main`
+
+- **Symptom:** a PR whose only commit is an empty one carrying `Release-As: x.y.z` merges,
+  GitHub says merged, and no release with that version ever comes.
+- **Means:** a rebase merge drops commits that end up empty, so the footer is discarded.
+  `gh pr merge --rebase` reports no error and the PR still shows as merged.
+- **Fix:** put the footer on a commit with real content, and confirm it with
+  `git log origin/main` after the merge. Typical need: with `release-type: simple` only
+  `feat:` and `fix:` release, so a `docs:` change to a file in `extra-files` never
+  publishes by itself.
