@@ -69,7 +69,9 @@ For each task, in order:
    `eskills:ux-bar` / `eskills:security-bar` / `eskills:arch-bar` / `eskills:perf-bar`.
 5. All green → mark task complete → next task.
 
-Model selection: cheap model for mechanical tasks, capable model for review/judgment.
+Model selection: the implementer runs on Sonnet (`model: "sonnet"`), and so do the fixes
+the reviewers send back to it. The spec reviewer, the adversarial verifier and the quality
+reviewer inherit the session model (Opus). Never Haiku for code.
 
 Test discipline comes from `eskills:standards` (integration tests, in-memory fakes, no
 mocks) — intentionally, not from `superpowers:test-driven-development`; my test philosophy
