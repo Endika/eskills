@@ -14,21 +14,21 @@ recipe.
 
 ## Find the symptom
 
-| It looks like                                                                                       | Open                           |
-| --------------------------------------------------------------------------------------------------- | ------------------------------ |
-| A release didn't cut; the release PR is stuck, looping, forbidden, or a `Release-As:` vanished      | `references/release-please.md` |
-| A Pages deploy is rejected, queues forever, times out near 600 s, or every retry says cancelled     | `references/github-pages.md`   |
-| It only breaks inside WSL, the disk won't shrink, or an image or container seems to have vanished   | `references/wsl.md`            |
-| Egress blown, anonymous writes possible, or fields vanishing after another client writes            | `references/supabase.md`       |
-| A FAP won't build or test, the catalog rejects it, or its screen stays blank                        | `references/flipper.md`        |
-| Personal data is reachable, or data leaves to a third party undisclosed                             | `references/gdpr.md`           |
-| A `gh` command dies on a GraphQL error, a 403 on a repo I don't own, or a poll loop that never ends | `references/github-cli.md`     |
-| The README CI badge says failing while every PR and merge is green                                  | `references/github-cli.md`     |
-| The same CodeQL alert keeps coming back, or won't close after a fix                                 | `references/codeql.md`         |
-| A Google API key works for Gemini but not for Speech, or the reverse                                | `references/ai-providers.md`   |
-| A dependency bump merges without CI, won't install, can never go green, or a fork could auto-merge  | `references/dependencies.md`   |
-| A command on a remote box hangs with no output, or a process match kills the wrong thing            | `references/remote-ops.md`     |
-| A scheduled job can't fetch a source that answers fine from home                                    | `references/ci-network.md`     |
+| It looks like                                                                                                                | Open                           |
+| ---------------------------------------------------------------------------------------------------------------------------- | ------------------------------ |
+| A release didn't cut; the release PR is stuck, looping, forbidden, or a `Release-As:` vanished                               | `references/release-please.md` |
+| A Pages deploy is rejected, queues forever, times out near 600 s, or every retry says cancelled                              | `references/github-pages.md`   |
+| It only breaks inside WSL, the disk won't shrink, or an image or container seems to have vanished                            | `references/wsl.md`            |
+| Egress blown, anonymous writes possible, or fields vanishing after another client writes                                     | `references/supabase.md`       |
+| A FAP won't build or test, the catalog rejects it, or its screen stays blank                                                 | `references/flipper.md`        |
+| Personal data is reachable, or data leaves to a third party undisclosed                                                      | `references/gdpr.md`           |
+| A `gh` command dies on a GraphQL error, a 403 on a repo I don't own, or a poll loop that never ends                          | `references/github-cli.md`     |
+| The README CI badge says failing while every PR and merge is green                                                           | `references/github-cli.md`     |
+| The same CodeQL alert keeps coming back, or won't close after a fix                                                          | `references/codeql.md`         |
+| A Google API key works for Gemini but not for Speech, or the reverse                                                         | `references/ai-providers.md`   |
+| A dependency bump merges without CI, won't install, never goes green, breaks `tsc` on Node types, or a fork could auto-merge | `references/dependencies.md`   |
+| A command on a remote box hangs with no output, or a process match kills the wrong thing                                     | `references/remote-ops.md`     |
+| A scheduled job can't fetch a source that answers fine from home                                                             | `references/ci-network.md`     |
 
 ## What belongs here
 
