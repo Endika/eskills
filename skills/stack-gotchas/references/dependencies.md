@@ -79,3 +79,16 @@
   `synchronize` event. Auto-merge was already armed when the PR opened.
 - **Fix:** nothing, if auto-merge is armed and the required checks are green; it's noise.
   Check `autoMergeRequest` on the PR before chasing it.
+
+## A minor bump breaks `tsc` with "Cannot find type definition file for 'node'"
+
+- **Symptom:** a grouped minor/patch PR fails type-check with TS2688 (`"types": ["node"]`)
+  or TS2591 on `node:fs`, while the bump touches nothing related to Node.
+- **Means:** `@types/node` was never declared; it was installed as a peer of some
+  transitive package. The 21.2.4 commitlint bump dropped `cosmiconfig-typescript-loader`,
+  so `@types/node` left the lockfile. Any lock entry for it with `"peer": true` and no line
+  in `package.json` is the same trap waiting.
+- **Fix:** from a branch off `main`, run `npx -y npm@11 install -D @types/node@^N`, with
+  `N` the major already in the lock. Open it as its own PR, then let Dependabot rebase the
+  broken one. Use npm 11: npm 10 strips the `libc` fields and floods the lockfile diff.
+  Patching the Dependabot branch instead stops Dependabot from updating it.
