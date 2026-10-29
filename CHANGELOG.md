@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.18.1](https://github.com/Endika/eskills/compare/v0.18.0...v0.18.1) (2026-10-29)
+
+
+### Bug Fixes
+
+* **statusline:** put the branch last so a long name never hides the cache ([d7a6fa2](https://github.com/Endika/eskills/commit/d7a6fa2ba59e268282176ed329beac8edcfeefee))
+
 ## [0.18.0](https://github.com/Endika/eskills/compare/v0.17.0...v0.18.0) (2026-10-29)
 
 
