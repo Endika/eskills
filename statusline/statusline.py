@@ -90,11 +90,6 @@ def main():
         used = f" ({short(tokens)}/{short(size)})" if tokens is not None else ""
         parts.append(f"{color}ctx {pct:.0f}%{RESET}{used}")
 
-    cwd = (data.get("workspace") or {}).get("current_dir") or data.get("cwd")
-    branch = git_branch(cwd) if cwd else None
-    if branch:
-        parts.append(f"{YELLOW if branch.endswith('*') else DIM}{branch}{RESET}")
-
     if found:
         ts, usage = found
         created = usage.get("cache_creation") or {}
@@ -110,6 +105,11 @@ def main():
             parts.append(f"{BLUE}❄️ cache cold ({minutes(elapsed)} ago){RESET}")
     else:
         parts.append(f"{DIM}cache —{RESET}")
+
+    cwd = (data.get("workspace") or {}).get("current_dir") or data.get("cwd")
+    branch = git_branch(cwd) if cwd else None
+    if branch:
+        parts.append(f"{YELLOW if branch.endswith('*') else DIM}{branch}{RESET}")
 
     print(" · ".join(parts))
 
