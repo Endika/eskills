@@ -39,6 +39,20 @@ same `version` until release-please bumps it.
 claude --plugin-dir path/to/eskills   # or, from the clone: make dev
 ```
 
+**Status line (optional, from the clone):**
+
+```bash
+make statusline
+```
+
+Shows the model, the context window in use, the repo and branch the session is working
+in (`*` when there are uncommitted changes), and whether the prompt cache is still warm,
+e.g. `Opus 5.5 · ctx 8% (78k/1M) · eskills: feat/statusline* · 🔥 cache 59m`. Once the
+cache expires it reads `❄️ cache cold (1h12m ago)`: the next message re-processes the
+whole context at full price. A plugin cannot set `statusLine`, so this copies the script
+to `~/.claude/` and adds the entry to `~/.claude/settings.json`, leaving the other
+settings as they are.
+
 ## Skills
 
 Invoked as `eskills:<name>`.

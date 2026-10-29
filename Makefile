@@ -5,7 +5,7 @@ PLUGIN := eskills
 
 .ONESHELL:
 .DEFAULT_GOAL := help
-.PHONY: help list check lint fmt new dev details tag install update
+.PHONY: help list check lint fmt new dev details tag install update statusline
 
 help: ## Show this help
 	@grep -hE '^[a-zA-Z_-]+:.*?## ' $(MAKEFILE_LIST) | \
@@ -70,3 +70,14 @@ install: ## Add this repo as a marketplace and install the plugin
 
 update: ## Update the installed plugin to latest (restart to apply)
 	claude plugin update $(PLUGIN)
+
+statusline: ## Install the context % / prompt-cache status line into ~/.claude
+	@install -m 755 statusline/statusline.py "$$HOME/.claude/statusline.py"
+	python3 - <<'PY'
+	import json, pathlib
+	p = pathlib.Path.home() / ".claude" / "settings.json"
+	s = json.loads(p.read_text()) if p.exists() else {}
+	s["statusLine"] = {"type": "command", "command": "python3 ~/.claude/statusline.py", "refreshInterval": 30}
+	p.write_text(json.dumps(s, indent=2, ensure_ascii=False) + "\n")
+	PY
+	echo "status line installed — it shows up on the next session"
