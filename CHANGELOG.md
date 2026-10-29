@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.18.0](https://github.com/Endika/eskills/compare/v0.17.0...v0.18.0) (2026-10-29)
+
+
+### Features
+
+* **statusline:** show context use, git branch and prompt-cache warmth ([eed2b14](https://github.com/Endika/eskills/commit/eed2b14b375734f9270833baaf1ae178908a57fa))
+
 ## [0.17.0](https://github.com/Endika/eskills/compare/v0.16.0...v0.17.0) (2026-09-24)
 
 
