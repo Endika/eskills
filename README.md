@@ -45,9 +45,10 @@ claude --plugin-dir path/to/eskills   # or, from the clone: make dev
 make statusline
 ```
 
-Shows the model, the context window in use, the repo and branch the session is working
-in (`*` when there are uncommitted changes), and whether the prompt cache is still warm,
-e.g. `Opus 5.5 · ctx 8% (78k/1M) · eskills: feat/statusline* · 🔥 cache 59m`. Once the
+Shows the model, the context window in use, whether the prompt cache is still warm, and
+last, so a long name never hides the rest, the repo and branch the session is working in
+(`*` when there are uncommitted changes), e.g.
+`Opus 5.5 · ctx 8% (78k/1M) · 🔥 cache 59m · eskills: feat/statusline*`. Once the
 cache expires it reads `❄️ cache cold (1h12m ago)`: the next message re-processes the
 whole context at full price. A plugin cannot set `statusLine`, so this copies the script
 to `~/.claude/` and adds the entry to `~/.claude/settings.json`, leaving the other
