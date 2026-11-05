@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.19.0](https://github.com/Endika/eskills/compare/v0.18.1...v0.19.0) (2026-11-05)
+
+
+### Features
+
+* **exploit-hunt:** have a fresh agent try to refute every candidate before it is reported ([3ae488f](https://github.com/Endika/eskills/commit/3ae488f335597217e99f228046caabae57eb9ddf))
+
 ## [0.18.1](https://github.com/Endika/eskills/compare/v0.18.0...v0.18.1) (2026-10-29)
 
 
