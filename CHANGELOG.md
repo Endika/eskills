@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.21.0](https://github.com/Endika/eskills/compare/v0.20.0...v0.21.0) (2026-11-10)
+
+
+### Features
+
+* **stacks:** add a video reference for HyperFrames ([6f7427d](https://github.com/Endika/eskills/commit/6f7427d9a43beb840cd6dc74089ccc4a05c9e47d))
+
 ## [0.20.0](https://github.com/Endika/eskills/compare/v0.19.0...v0.20.0) (2026-11-10)
 
 
