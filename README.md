@@ -16,7 +16,9 @@ maximalist catalog; every skill has to justify its place.
   required runtime dependency. Nothing else is installed.
 
 > Optional: `task-flow` and `ux-bar` use the `impeccable` plugin for design direction and
-> review, falling back to the `frontend-design` skill; `security-bar` layers on the built-in `security-review`. `task-flow` can dispatch the `code-explorer` and
+> review, falling back to the `frontend-design` skill; `security-bar` layers on the
+> built-in `security-review`; `stacks` points video work at the `hyperframes` plugin.
+> `task-flow` can dispatch the `code-explorer` and
 > `code-architect` **agents** from the `feature-dev` plugin — that plugin ships agents and
 > a command, no skills — and falls back to the built-in `Explore` agent without it. None
 > of these are required.
