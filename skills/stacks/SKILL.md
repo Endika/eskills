@@ -1,6 +1,6 @@
 ---
 name: stacks
-description: Use when building or maintaining a project in one of my non-default stacks — Flipper Zero FAP in C, Docker / Compose, and the Python / PyTorch training side of a model that ships elsewhere, now; Django / Flask / FastAPI coming — for its architecture, build, test, formatting, containerization, iteration and release conventions. Routes to references/<stack>/. The web stack (TS / Supabase / PWA) is the pack's implicit default and has no entry here.
+description: Use when building or maintaining a project in one of my non-default stacks — Flipper Zero FAP in C, Docker / Compose, video with HyperFrames, and the Python / PyTorch training side of a model that ships elsewhere, now; Django / Flask / FastAPI coming — for its architecture, build, test, formatting, containerization, iteration and release conventions. Routes to references/<stack>/. The web stack (TS / Supabase / PWA) is the pack's implicit default and has no entry here.
 ---
 
 # stacks
@@ -29,6 +29,7 @@ pattern traced to a real repo. Read the folder for the stack you're in.
 | Flipper Zero FAP (C)  | `references/flipper/` | architecture · build-and-test · formatting · release-please |
 | Docker / Compose      | `references/docker/`  | toolchain-images · services · dev-environments              |
 | ML training (PyTorch) | `references/ml/`      | iteration-loop · metrics · pitfalls                         |
+| Video (HyperFrames)   | `references/video/`   | hyperframes                                                 |
 | Django                | `references/django/`  | _planned_                                                   |
 | Flask                 | `references/flask/`   | _planned_                                                   |
 | FastAPI               | `references/fastapi/` | _planned_                                                   |
