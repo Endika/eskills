@@ -31,9 +31,21 @@ keystone is an adversarial verifier that re-checks "done" in fresh context.
    candidates if needed (apply `eskills:perf-bar`), and pick the approach **before**
    committing the plan. The **`code-architect` agent** (same plugin, same caveat) helps
    here when present; it is not required.
-4. **`superpowers:brainstorming`** — refine intent and trade-offs.
-5. **`superpowers:writing-plans`** — produce the plan, enriched with the template below.
-6. Emit the **PLAN + acceptance criteria + subagent design + chosen-approach rationale**.
+4. **If UI surface `improve` or `new` → DESIGN sub-phase,** with `impeccable:impeccable`,
+   settled **before** brainstorming and carried into the plan as acceptance criteria of the
+   UI tasks:
+   - `improve` → `critique` the current surface, then the verb its findings call for
+     (`polish`, `layout`, `typeset`, `clarify`…), within the existing design system.
+   - `new` → `shape <feature>` to set the visual direction.
+
+   `existing` skips this, new pages included: the design system is the direction, and the
+   new UI reuses its tokens and components. Without the plugin, use `frontend-design`.
+   Run impeccable from `../<repo>-notes/` and `rm -rf .impeccable` when done —
+   `PRODUCT.md`, `DESIGN.md` and `.impeccable/` never land in the repo, not even untracked.
+
+5. **`superpowers:brainstorming`** — refine intent and trade-offs.
+6. **`superpowers:writing-plans`** — produce the plan, enriched with the template below.
+7. Emit the **PLAN + acceptance criteria + subagent design + chosen-approach rationale**.
 
 ### Plan template (integrated — not a separate skill)
 
@@ -67,6 +79,9 @@ For each task, in order:
    pass, tests pass, and the output meet every acceptance criterion.**
 4. **Quality reviewer** — applies only the lenses that apply to this task:
    `eskills:ux-bar` / `eskills:security-bar` / `eskills:arch-bar` / `eskills:perf-bar`.
+   On a UI task, `ux-bar` runs together with `impeccable:impeccable critique` and `audit`
+   on the touched surface when the plugin is installed. They only report; a finding that
+   contradicts the project's existing design system is dropped, never applied.
 5. All green → mark task complete → next task.
 
 Model selection: the implementer runs on Sonnet (`model: "sonnet"`), and so do the fixes
