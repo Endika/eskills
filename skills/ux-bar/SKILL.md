@@ -1,15 +1,16 @@
 ---
 name: ux-bar
-description: Use when building or reviewing UI to apply my design and UX bar on top of frontend-design — semantic color, design-system rules (coral is brand; positive=owed, warn=owes, danger=error/delete), and responsive / horizontal-overflow checks.
+description: Use when building or reviewing UI to apply my design and UX bar on top of impeccable or frontend-design — semantic color, design-system rules (coral is brand; positive=owed, warn=owes, danger=error/delete), and responsive / horizontal-overflow checks.
 ---
 
 # ux-bar
 
 ## Overview
 
-My design/UX bar. It layers on top of `frontend-design` (reference it for the craft) and
-adds the rules I care about. Usable standalone on a diff, and invoked by the quality stage
-of `eskills:task-flow`.
+My design/UX bar. The craft comes from the `impeccable` plugin when installed (`critique`
+for the UX heuristics, `audit` for a11y, performance and responsive), otherwise from
+`frontend-design`. This skill adds the rules I care about, and they win on any conflict.
+Usable standalone on a diff, and invoked by the quality stage of `eskills:task-flow`.
 
 ## Semantic color — the rule I break most often
 

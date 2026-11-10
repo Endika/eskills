@@ -44,6 +44,8 @@ entry point of `eskills:task-flow` Phase 1.
 
 - Project shape: greenfield | brownfield
 - Hard-tech challenge: yes (algorithm / performance) | no
+- UI surface: existing (built within the current design system, new pages included) |
+  improve (refine the current design) | new (no design system yet, or a redesign) | none
 ```
 
 ## Notes
@@ -51,5 +53,8 @@ entry point of `eskills:task-flow` Phase 1.
 - **Acceptance criteria must be observable** — "X is faster" is not a criterion; "p95 <
   200ms on N=10k" is.
 - The **classification** drives `task-flow`: brownfield → `feature-dev:code-explorer`;
-  hard-tech → the SPIKE sub-phase.
+  hard-tech → the SPIKE sub-phase; UI surface `improve` or `new` → the DESIGN sub-phase.
+- **Ask the UI surface, don't infer it,** unless the request already says it ("new app",
+  "redesign", "add page X"). Getting it wrong runs `shape` over a design system that
+  already exists, so the question goes out in step 2 with the other ambiguities.
 - Keep the spec outside the repo (see `eskills:standards`) — it's an internal doc.

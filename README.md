@@ -15,8 +15,8 @@ maximalist catalog; every skill has to justify its place.
   verification-before-completion, finishing-a-development-branch). It is the **only**
   required runtime dependency. Nothing else is installed.
 
-> Optional: `ux-bar` layers on the `frontend-design` skill and `security-bar` on the
-> built-in `security-review`. `task-flow` can dispatch the `code-explorer` and
+> Optional: `task-flow` and `ux-bar` use the `impeccable` plugin for design direction and
+> review, falling back to the `frontend-design` skill; `security-bar` layers on the built-in `security-review`. `task-flow` can dispatch the `code-explorer` and
 > `code-architect` **agents** from the `feature-dev` plugin — that plugin ships agents and
 > a command, no skills — and falls back to the built-in `Explore` agent without it. None
 > of these are required.
@@ -81,7 +81,7 @@ review stage. Hard cap of **4**.
 
 | Lens           | Use when                                                                                                                         |
 | -------------- | -------------------------------------------------------------------------------------------------------------------------------- |
-| `ux-bar`       | Building/reviewing UI — my design-system, semantic-color and inclusive-copy rules on top of `frontend-design`.                   |
+| `ux-bar`       | Building/reviewing UI — my design-system, semantic-color and inclusive-copy rules on top of `impeccable` or `frontend-design`.   |
 | `security-bar` | Reviewing for security — my checklist on top of `security-review`.                                                               |
 | `arch-bar`     | Judging whether an architecture fits its scale — catches over- and under-engineering.                                            |
 | `perf-bar`     | Assessing performance/algorithmic soundness — Big-O, N+1, egress, benchmarks; React and Vite-build rule sheets in `references/`. |
@@ -101,17 +101,20 @@ flowchart TD
 
   subgraph P1["Phase 1 — Understand and plan (auto, adaptive)"]
     direction TB
-    SI["eskills:spec-intake<br/>objective · acceptance criteria · constraints · DoD<br/>classify greenfield/brownfield · flag hard-tech"]
+    SI["eskills:spec-intake<br/>objective · acceptance criteria · constraints · DoD<br/>classify greenfield/brownfield · flag hard-tech<br/>ask UI surface: existing / improve / new"]
     CE["feature-dev:code-explorer<br/>understand the existing code"]
     SP["SPIKE — 2-3 approaches<br/>benchmark with perf-bar · pick before planning"]
+    DS["DESIGN — impeccable<br/>improve: critique + fix verb · new: shape<br/>asked in spec-intake"]
     BR["superpowers:brainstorming<br/>refine intent and trade-offs"]
     WP["superpowers:writing-plans<br/>files · concrete change · acceptance criteria · validation commands"]
     PLAN(["PLAN + acceptance criteria + subagent design + rationale"])
     SI -. if brownfield .-> CE
     SI -. if hard-tech .-> SP
+    SI -. if improve / new UI .-> DS
     SI --> BR
     CE --> BR
     SP --> BR
+    DS --> BR
     BR --> WP --> PLAN
   end
 
@@ -124,7 +127,7 @@ flowchart TD
     SR["2 · Spec reviewer<br/>independent · does it match the spec?"]
     AV["3 · Adversarial verifier<br/>fresh context · re-runs lint + types + tests<br/>defaults to NOT done"]
     QR["4 · Quality reviewer<br/>applies only the lenses that fit · cap 4"]
-    UX["ux-bar<br/>semantic color · tokens · a11y · responsive"]
+    UX["ux-bar<br/>semantic color · tokens · a11y · responsive<br/>+ impeccable critique · audit"]
     SEC["security-bar<br/>client guards are not security · RLS · server-side authz"]
     ARCH["arch-bar<br/>over- and under-engineering"]
     PERF["perf-bar<br/>Big-O · N+1 · egress"]
