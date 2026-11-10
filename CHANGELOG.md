@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.20.0](https://github.com/Endika/eskills/compare/v0.19.0...v0.20.0) (2026-11-10)
+
+
+### Features
+
+* **task-flow:** ask if UI keeps, improves or replaces the design, then run impeccable ([d8fbe32](https://github.com/Endika/eskills/commit/d8fbe3269f7d49f89babb3a836cf7b853e36874a))
+
 ## [0.19.0](https://github.com/Endika/eskills/compare/v0.18.1...v0.19.0) (2026-11-05)
 
 
