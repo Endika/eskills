@@ -44,6 +44,7 @@ catches it", don't write it.
 - **Prefer integration-flavored tests:** one test exercising use case → service → repository (memory repo) beats three mock-at-every-seam unit tests.
 - **Skip trivial passthroughs:** a use case that just forwards to an already-tested service needs no test of its own.
 - **A VO getter is not a test.** Test the behavior the value object enforces (validation, equality, immutability), not the generated property.
+- **A test that passes against a hollow implementation is noise.** If it would still pass with every function returning nothing (`undefined`, `[]`, `0`), make it assert the result the caller sees, or delete it.
 - **Coverage % is not a target.** 80% with rich behavioral assertions beats 100% of trivial ones.
 - **Mutation testing proves the tests bite.** On the logic a change touches, every surviving mutant ends as a new test, deleted dead code, or a named equivalent. Scope, triage and the Stryker recipe in `references/mutation.md`; `eskills:task-flow`'s verifier runs it per task.
 
