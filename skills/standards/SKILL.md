@@ -45,6 +45,7 @@ catches it", don't write it.
 - **Skip trivial passthroughs:** a use case that just forwards to an already-tested service needs no test of its own.
 - **A VO getter is not a test.** Test the behavior the value object enforces (validation, equality, immutability), not the generated property.
 - **Coverage % is not a target.** 80% with rich behavioral assertions beats 100% of trivial ones.
+- **Mutation testing proves the tests bite.** On the logic a change touches, every surviving mutant ends as a new test, deleted dead code, or a named equivalent. Scope, triage and the Stryker recipe in `references/mutation.md`; `eskills:task-flow`'s verifier runs it per task.
 
 ## Repo hygiene
 
