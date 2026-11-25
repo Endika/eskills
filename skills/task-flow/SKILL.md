@@ -78,10 +78,12 @@ For each task, in order:
    **defaults to NOT done, and marks done only when it has itself seen lint pass, typecheck
    pass, tests pass, and the output meet every acceptance criterion.**
    Then it **mutation-tests the logic files the task touched** (`domain/`, `application/`,
-   pure helpers; never UI or adapters) per `eskills:standards` → `references/mutation.md`.
+   pure helpers, deciding adapters, UI logic moved into utils; not component markup) per
+   `eskills:standards` → `references/mutation.md`.
    Every Survived or NoCoverage mutant goes back to the implementer as a missing test or
    dead code to delete, unless the verifier names it an equivalent mutant with its reason.
-   No score target; done means no unexplained survivor. A task with no logic files skips it.
+   No score target; done means no unexplained survivor, reached by strengthening existing
+   tests before adding new ones. A task with no logic files skips it.
 4. **Quality reviewer** — applies only the lenses that apply to this task:
    `eskills:ux-bar` / `eskills:security-bar` / `eskills:arch-bar` / `eskills:perf-bar`.
    On a UI task, `ux-bar` runs together with `impeccable:impeccable critique` and `audit`
