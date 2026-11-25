@@ -3,7 +3,8 @@ import json
 import sys
 from collections import defaultdict
 
-report = json.load(open(sys.argv[1]))
+with open(sys.argv[1]) as fh:
+    report = json.load(fh)
 tests = {}
 for path, tf in report.get("testFiles", {}).items():
     for t in tf["tests"]:

@@ -12,7 +12,8 @@ don't count for it, since a later prune of those files would leave it alive.
 import json, sys
 from collections import defaultdict
 
-report = json.load(open(sys.argv[1]))
+with open(sys.argv[1]) as fh:
+    report = json.load(fh)
 args = sys.argv[2:]
 alone = '--alone' in args
 prefixes = [a for a in args if a != '--alone']
