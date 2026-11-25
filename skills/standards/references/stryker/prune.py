@@ -4,6 +4,10 @@ usage: prune.py mutation.json [--alone] PRUNABLE_PREFIX [PRUNABLE_PREFIX...]
 --alone ignores every non-prunable test (cover the mutants with prunable tests only).
 Tests whose file starts with a prunable prefix may be dropped; every other test
 is kept. Prints the prunable tests that kill nothing the kept set does not kill.
+
+A mutant its source's own test file kills (src/a/X.ts -> tests/a/X.test.ts or
+tests/a/X.<part>.test.ts) must stay killed by that file: kills from other files
+don't count for it, since a later prune of those files would leave it alive.
 """
 import json, sys
 from collections import defaultdict
@@ -16,11 +20,18 @@ names, files = {}, {}
 for tf, data in report.get('testFiles', {}).items():
     for t in data['tests']:
         names[t['id']] = t['name']; files[t['id']] = tf
+def stem(path):
+    return path.split('src/', 1)[-1].rsplit('.', 1)[0]
+def own_file(src, tf):
+    rest = tf.split('tests/', 1)[-1]
+    return rest.startswith(stem(src) + '.')
 killers = []
-for f in report['files'].values():
+for src, f in report['files'].items():
     for m in f['mutants']:
         if m['status'] in ('Killed', 'Timeout') and m.get('killedBy'):
-            killers.append(set(m['killedBy']))
+            k = set(m['killedBy'])
+            own = {t for t in k if own_file(src, files.get(t, ''))}
+            killers.append(own or k)
 prunable = {t for t, tf in files.items() if any(tf.startswith(p) or p in tf for p in prefixes)}
 fixed = set() if alone else set(files) - prunable
 if alone:

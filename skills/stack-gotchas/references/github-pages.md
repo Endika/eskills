@@ -68,3 +68,16 @@ found for this workflow run. Artifact count is 2.` A third dead end for the same
   workflow can't perform it.
 - **Fix:** enable it once from outside the workflow with a user token:
   `gh api -X POST repos/<owner>/<repo>/pages -f build_type=workflow`.
+
+## `deploy-pages` finds 0 artifacts right after the upload succeeded
+
+- **Symptom:** in the same job, `upload-pages-artifact` succeeds and `deploy-pages` fails
+  with `Found 0 artifact(s)`, several runs in a row. The workflow and the action SHAs are
+  the same as in runs that worked.
+- **Means:** a GitHub-side failure; nothing in the repo caused it. On 2026-11-25 zuhaitz
+  failed three times like this, and a clean `workflow_dispatch` a few hours later passed
+  first time.
+- **Fix:** don't change the workflow. Dispatch it again later
+  (`gh workflow run deploy.yml`). If a re-run of the failed run only fails faster, see the
+  sticky-cancellation recipe above. Splitting `build` from `deploy` into two jobs with
+  `cancel-in-progress: false` keeps one bad deploy from cancelling the next.

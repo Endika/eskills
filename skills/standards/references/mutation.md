@@ -28,7 +28,17 @@ adding a test per mutant multiplies the suite; don't.
 - Add a new test only when nothing fits.
 - Then prune: run once with `--disableBail` (every killing test gets recorded) and compute
   the minimal set that still kills every mutant with `references/stryker/prune.py report.json --alone
-  <test-file-prefixes>`. Delete the rest.
+<test-file-prefixes>`. Delete the rest.
+- Keep each source's **own** killers. A mutant killed only from another file's tests is one
+  prune away from surviving: when that other file is pruned later, nothing re-mutates this
+  source. Pick the minimal set per source file from its own test file first, and count
+  kills from elsewhere only as a bonus. Losing this cost EventSplit 15 live domain mutants
+  that every PR had passed.
+- A table generated from data (`it.each` over every built page, translation key or file)
+  is one check, not hundreds of tests. Make it one test that collects every offender and
+  asserts the list is empty: `expect(problems).toEqual([])` names each one on failure and
+  checks exactly as much. eslojusto went from 9,926 to 5,097 tests this way. Hand-written
+  case tables stay as rows.
 - **Never prune** tests that guard what Stryker can't generate: PIN enforced server-side,
   throttles, egress limits, payload caps, "does not mutate its input" (React state relies
   on it), and named regression tests. They "kill nothing" by design.
@@ -50,10 +60,30 @@ and nothing proves it. Duplicated code shows up as the same survivor in several 
 extract it once and test it once.
 
 Disable comments are **not honoured** everywhere:
+
 - In the middle of a multi-line method chain, a `next-line` mark is ignored. Wrap the whole
   statement in `// Stryker disable <Mutator>: reason` … `// Stryker restore <Mutator>`.
 - Around a `catch` clause, even the wrapping block is ignored. Extract the read into a small
   function whose `try`/`catch` lines can each carry a `next-line` mark.
+
+## Per-PR CI job
+
+Every swept repo carries the job, so no PR can bring a survivor back:
+
+- `scripts/mutation-targets.sh <base>` lists the changed logic files: each changed source
+  plus the source behind each changed **or deleted** test. Map a dotted test name to its
+  real source by dropping dotted parts until one exists (`Event.restore.test.ts` →
+  `Event.ts`). Without both rules a prune or a split test file skips its source entirely.
+  Exclude components, i18n, `main.tsx` and `App.tsx`.
+- The CI step installs `@stryker-mutator/core` and `vitest-runner` with `npm i --no-save`,
+  runs `stryker run --mutate "$FILES"` with `break: 100`, and needs `fetch-depth: 0`. The
+  repo's `stryker.config.json` and `stryker/noise-ignorer.mjs` stay out of knip.
+- Set `"disableTypeChecks": false` wherever a test hashes or reads source files. By default
+  Stryker prepends `// @ts-nocheck` to every source in its sandbox, so a translation-stamp
+  test fails the dry run with no mutant involved. Vitest doesn't type-check, so nothing is
+  lost.
+- The CI job only sees changed files. Before calling a repo done, run one full pass over
+  all its logic: it is the only check of what earlier prunes removed.
 
 ## TypeScript + Vitest — StrykerJS
 
@@ -84,7 +114,10 @@ Keep the config in `../<repo>-notes/stryker.config.json`, never in the repo:
 ```json
 {
   "testRunner": "vitest",
-  "plugins": ["@stryker-mutator/vitest-runner", "<home>/.local/share/stryker/noise-ignorer.mjs"],
+  "plugins": [
+    "@stryker-mutator/vitest-runner",
+    "<home>/.local/share/stryker/noise-ignorer.mjs"
+  ],
   "ignorers": ["noise"],
   "mutate": ["src/domain/x.ts", "src/application/y.ts"],
   "reporters": ["clear-text", "json"],
@@ -104,7 +137,16 @@ survivors per file and the tests that reach mutated code but kill nothing.
   Stryker's sandbox and the run dies with `Cannot find package 'vitest'`.
 - While `.stryker-tmp/` exists, Vitest picks up the copied tests. Count tests with
   `--exclude '.stryker-tmp/**'`, and delete the folder if a run was killed.
-- Never run it alongside another heavy job.
+- Never run it alongside another heavy job. A loaded machine also fails timing tests and
+  5 s timeouts in pre-commit hooks; retry the commit once the run ends.
+- Add the `progress-append-only` reporter to any long run. `clear-text` alone writes nothing
+  until the end, so there is no way to tell how far a four-hour run has got.
+- A `disableBail` pass runs every covering test per mutant, and each static mutant runs the
+  whole suite. EventSplit's full pass (4,900 mutants, 689 static) took 4 h 33 min at
+  concurrency 8, against about 30 min with bail. Run it once per repo, for the prune.
+- To confirm a reported survivor, re-apply it from the JSON report and run the suite.
+  `location` lines and columns are 1-based, and `replacement` replaces exactly that range.
+  Guessing the mutant from the line tests a different one.
 - Cost on EventSplit:
   - 2 domain files, 200 mutants: 7.5 min, then 34 s incremental.
   - All of `application/` plus `infrastructure/`, 1,762 mutants at concurrency 8: 28 min.
