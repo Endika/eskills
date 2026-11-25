@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.22.0](https://github.com/Endika/eskills/compare/v0.21.0...v0.22.0) (2026-11-25)
+
+
+### Features
+
+* **standards:** add the proven Stryker recipe, noise plugin and pruning ([f05e526](https://github.com/Endika/eskills/commit/f05e526b2cac97f8fb73906e04e2fe1627feb1f5))
+* **standards:** reject tests that still pass against a hollow implementation ([b887b53](https://github.com/Endika/eskills/commit/b887b5349d896b5bc872bd3f8503a4358c9acdee))
+* **task-flow:** have the verifier mutation-test the logic each task touches ([f7b998d](https://github.com/Endika/eskills/commit/f7b998d4bfbb1dec5f76ebace2e68fd06b7e00f8))
+
 ## [0.21.0](https://github.com/Endika/eskills/compare/v0.20.0...v0.21.0) (2026-11-10)
 
 
