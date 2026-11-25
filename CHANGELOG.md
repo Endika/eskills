@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.22.1](https://github.com/Endika/eskills/compare/v0.22.0...v0.22.1) (2026-11-25)
+
+
+### Bug Fixes
+
+* **standards:** close the report file in the Stryker scripts ([460dede](https://github.com/Endika/eskills/commit/460deded23da2591fd78161f414dfe3d99c14bf6))
+
 ## [0.22.0](https://github.com/Endika/eskills/compare/v0.21.0...v0.22.0) (2026-11-25)
 
 
