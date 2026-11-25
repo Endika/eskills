@@ -17,7 +17,7 @@ recipe.
 | It looks like                                                                                                                | Open                           |
 | ---------------------------------------------------------------------------------------------------------------------------- | ------------------------------ |
 | A release didn't cut; the release PR is stuck, looping, forbidden, or a `Release-As:` vanished                               | `references/release-please.md` |
-| A Pages deploy is rejected, queues forever, times out near 600 s, or every retry says cancelled                              | `references/github-pages.md`   |
+| A Pages deploy is rejected, queues forever, times out near 600 s, finds 0 artifacts, or every retry says cancelled           | `references/github-pages.md`   |
 | It only breaks inside WSL, the disk won't shrink, or an image or container seems to have vanished                            | `references/wsl.md`            |
 | Egress blown, anonymous writes possible, or fields vanishing after another client writes                                     | `references/supabase.md`       |
 | A FAP won't build or test, the catalog rejects it, or its screen stays blank                                                 | `references/flipper.md`        |
